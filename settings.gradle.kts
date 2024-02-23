@@ -15,3 +15,4 @@ dependencyResolutionManagement {
 
 rootProject.name = "Cameo"
 include(":app")
+include(":core")

@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".view.prelogin.ProfileFragment">
+
+    <com.google.android.material.appbar.AppBarLayout
+        android:id="@+id/abl_profile"
+        android:layout_width="match_parent"
+        android:layout_height="?attr/actionBarSize"
+        android:layout_alignParentTop="true"
+        android:background="@android:color/transparent">
+
+        <com.google.android.material.appbar.MaterialToolbar
+            android:id="@+id/mt_profile"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:titleCentered="true"
+            app:titleTextAppearance="@style/AppBarTitleText"
+            tools:title="@string/profile_title" />
+
+    </com.google.android.material.appbar.AppBarLayout>
+
+    <com.google.android.material.divider.MaterialDivider
+        android:id="@+id/v_profile"
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:layout_below="@id/abl_profile" />
+
+    <com.google.android.material.imageview.ShapeableImageView
+        android:id="@+id/iv_profile_image"
+        android:layout_width="128dp"
+        android:layout_height="128dp"
+        android:layout_below="@+id/v_profile"
+        android:layout_centerInParent="true"
+        android:layout_marginTop="32dp"
+        android:background="@color/purple"
+        android:cropToPadding="true"
+        android:scaleType="centerInside"
+        app:shapeAppearanceOverlay="@style/ShapeAppearanceOverlay.App.CornerSize50Percent"
+        tools:src="@drawable/ic_person_outline" />
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/til_profile_name"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/iv_profile_image"
+        android:layout_marginHorizontal="16dp"
+        android:layout_marginTop="32dp"
+        android:hint="@string/name_label"
+        app:errorIconDrawable="@android:color/transparent">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/tiet_profile_name"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/poppins"
+            android:includeFontPadding="false"
+            android:inputType="text" />
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <Button
+        android:id="@+id/btn_profile"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/til_profile_name"
+        android:layout_marginHorizontal="16dp"
+        android:layout_marginTop="24dp"
+        android:fontFamily="@font/poppins_medium"
+        android:textSize="14sp"
+        tools:text="@string/done_text" />
+
+</RelativeLayout>

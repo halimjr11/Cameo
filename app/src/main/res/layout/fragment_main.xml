@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".view.main.MainFragment">
+
+    <com.google.android.material.appbar.AppBarLayout
+        android:id="@+id/abl_main"
+        android:layout_width="match_parent"
+        android:layout_height="?attr/actionBarSize"
+        android:layout_alignParentTop="true"
+        android:background="@android:color/transparent">
+
+        <com.google.android.material.appbar.MaterialToolbar
+            android:id="@+id/mt_main"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:menu="@menu/app_bar_menu"
+            app:subtitleTextAppearance="@style/AppBarSubtitleText"
+            app:titleTextAppearance="@style/AppBarTitleText"
+            tools:title="@string/app_name" />
+
+    </com.google.android.material.appbar.AppBarLayout>
+
+    <com.google.android.material.divider.MaterialDivider
+        android:id="@+id/v_app_bar_main_border"
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:layout_below="@id/abl_main" />
+
+    <androidx.fragment.app.FragmentContainerView
+        android:id="@+id/main_home_fragment"
+        android:name="androidx.navigation.fragment.NavHostFragment"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_above="@id/v_bottom_nav_main_border"
+        android:layout_below="@id/v_app_bar_main_border"
+        app:defaultNavHost="true"
+        app:navGraph="@navigation/navigation_home" />
+
+    <com.google.android.material.divider.MaterialDivider
+        android:id="@+id/v_bottom_nav_main_border"
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:layout_above="@id/bottom_nav_main_view" />
+
+    <com.google.android.material.bottomnavigation.BottomNavigationView
+        android:id="@+id/bottom_nav_main_view"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:background="?android:attr/windowBackground"
+        app:itemTextAppearanceActive="@style/Theme.Cameo.NavigationMenuText"
+        app:itemTextAppearanceInactive="@style/Theme.Cameo.NavigationMenuText"
+        app:labelVisibilityMode="labeled"
+        app:menu="@menu/bottom_navigation_menu" />
+
+</RelativeLayout>

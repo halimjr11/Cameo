@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".view.prelogin.onboarding.OnboardingFragment">
+
+    <androidx.viewpager2.widget.ViewPager2
+        android:id="@+id/on_boarding_view_pager"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <Button
+        android:id="@+id/btn_on_boarding_register"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="16dp"
+        android:layout_marginBottom="32dp"
+        android:fontFamily="@font/robotoslab_semi_bold"
+        android:text="Gabung Sekarang"
+        android:textSize="14sp"
+        app:layout_constraintBottom_toTopOf="@+id/rl_on_boarding_indicator"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <RelativeLayout
+        android:id="@+id/rl_on_boarding_indicator"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="32dp"
+        android:paddingHorizontal="16dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent">
+
+        <com.google.android.material.tabs.TabLayout
+            android:id="@+id/on_boarding_dot_indicator"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:background="@android:color/transparent"
+            app:tabBackground="@drawable/on_boarding_dot_indicator"
+            app:tabGravity="center"
+            app:tabIndicatorHeight="0dp" />
+
+        <Button
+            android:id="@+id/on_boarding_skip_text"
+            style="@style/Widget.MaterialComponents.Button.TextButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentStart="true"
+            android:fontFamily="@font/robotoslab_medium"
+            android:text="Lewati"
+            android:textAllCaps="false"
+            android:textColor="?attr/colorPrimary"
+            android:textSize="14sp" />
+
+        <Button
+            android:id="@+id/on_boarding_next_text"
+            style="@style/Widget.MaterialComponents.Button.TextButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentEnd="true"
+            android:fontFamily="@font/robotoslab_medium"
+            android:text="Selanjutnya"
+            android:textAllCaps="false"
+            android:textColor="?attr/colorPrimary"
+            android:textSize="14sp" />
+
+    </RelativeLayout>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

@@ -1,4 +1,4 @@
-<resources xmlns:tools="http://schemas.android.com/tools">
+<resources>
     <!-- Base application theme. -->
     <style name="Base.Theme.Cameo" parent="Theme.Material3.DayNight.NoActionBar">
         <!-- Customize your light theme here. -->
@@ -6,4 +6,127 @@
     </style>
 
     <style name="Theme.Cameo" parent="Base.Theme.Cameo" />
+
+    <style name="Widget.App.Button.OutlinedButton.Icon" parent="Widget.Material3.Button.OutlinedButton">
+        <item name="iconPadding">0dp</item>
+        <item name="strokeWidth">0dp</item>
+        <item name="android:insetTop">0dp</item>
+        <item name="android:insetBottom">0dp</item>
+        <item name="android:paddingStart">8dp</item>
+        <item name="android:paddingEnd">8dp</item>
+        <item name="android:minWidth">24dp</item>
+        <item name="android:minHeight">0dp</item>
+        <item name="android:fontFamily">@font/poppins_medium</item>
+    </style>
+
+    <style name="customRoundedImageView" parent="">
+        <item name="cornerFamily">rounded</item>
+        <item name="cornerSize">8dp</item>
+    </style>
+
+    <style name="Widget.App.Material3.Button" parent="Widget.Material3.Button">
+        <item name="fontFamily">@font/poppins_medium</item>
+        <item name="android:includeFontPadding">false</item>
+    </style>
+
+    <style name="Widget.App.Material3.Button.TextButton" parent="Widget.Material3.Button.TextButton">
+        <item name="fontFamily">@font/poppins_medium</item>
+        <item name="android:includeFontPadding">false</item>
+    </style>
+
+    <style name="Widget.App.Material3.Button.OutlinedButton" parent="Widget.Material3.Button.OutlinedButton">
+        <item name="fontFamily">@font/poppins_medium</item>
+    </style>
+
+    <style name="Widget.App.Material3.BottomSheet" parent="Widget.Material3.BottomSheet.Modal">
+        <item name="android:paddingBottom">0dp</item>
+        <item name="android:layout_gravity">left</item>
+    </style>
+
+    <style name="Widget.App.Chip.Filter" parent="Widget.Material3.Chip.Filter">
+        <item name="materialThemeOverlay">@style/ThemeOverlay.App.Chip</item>
+        <item name="android:textAppearance">@style/ChipTextAppearance</item>
+        <item name="chipMinTouchTargetSize">38dp</item>
+    </style>
+
+    <style name="ThemeOverlay.App.Chip" parent="">
+        <item name="elevationOverlayEnabled">false</item>
+        <item name="android:background">?attr/colorSurfaceContainerLowest</item>
+    </style>
+
+    <style name="ShapeAppearanceOverlay.App.CornerSize50Percent" parent="">
+        <item name="cornerSize">50%</item>
+    </style>
+
+    <style name="Widget.App.Material3.Chip.Assist" parent="Widget.Material3.Chip.Assist">
+        <item name="android:textAppearance">@style/ChipTextAppearance</item>
+        <item name="chipBackgroundColor">?android:attr/windowBackground</item>
+    </style>
+
+    <style name="Widget.App.Material3.Chip.Detail" parent="Widget.Material3.Chip.Assist">
+        <item name="android:textAppearance">@style/ChipTextAppearance</item>
+        <item name="chipBackgroundColor">?android:attr/windowBackground</item>
+    </style>
+
+    <style name="Widget.App.Button.OutlinedButton.IconOnly" parent="Widget.MaterialComponents.Button.OutlinedButton">
+        <item name="iconPadding">0dp</item>
+        <item name="android:insetTop">0dp</item>
+        <item name="android:insetBottom">0dp</item>
+        <item name="android:paddingLeft">12dp</item>
+        <item name="android:paddingRight">12dp</item>
+        <item name="android:minWidth">48dp</item>
+        <item name="android:minHeight">48dp</item>
+    </style>
+
+    <style name="Widget.App.Material3.BottomSheet.DragHandle" parent="Widget.Material3.BottomSheet.DragHandle">
+        <item name="android:paddingBottom">0dp</item>
+        <item name="android:minWidth">0dp</item>
+        <item name="android:minHeight">0dp</item>
+    </style>
+
+    <style name="CustomChipStyle" parent="Widget.Material3.Chip.Suggestion">
+        <item name="android:textAppearance">@style/ChipTextAppearance</item>
+        <item name="minHeight">0dp</item>
+        <item name="minWidth">0dp</item>
+    </style>
+
+    <style name="ChipTextAppearance" parent="TextAppearance.MaterialComponents.Button">
+        <item name="fontFamily">@font/poppins_medium</item>
+        <item name="android:textSize">14sp</item>
+        <item name="android:textColor">?attr/colorControlNormal</item>
+        <item name="android:letterSpacing">0</item>
+        <item name="android:textAllCaps">false</item>
+        <item name="iconTint">?attr/colorControlNormal</item>
+    </style>
+
+    <style name="ChipDetailTextAppearance" parent="TextAppearance.MaterialComponents.Button">
+        <item name="fontFamily">@font/poppins_medium</item>
+        <item name="android:includeFontPadding">false</item>
+        <item name="android:textSize">12sp</item>
+        <item name="android:letterSpacing">0</item>
+        <item name="android:textAllCaps">false</item>
+        <item name="iconTint">?attr/colorSurfaceContainerLowest</item>
+    </style>
+
+    <style name="CustomBottomSheet" parent="Widget.Material3.BottomSheet">
+        <item name="android:background">@color/white</item>
+        <item name="android:fontFamily">@font/poppins</item>
+    </style>
+
+    <style name="Theme.Cameo.NavigationMenuText">
+        <item name="fontFamily">@font/robotoslab_medium</item>
+    </style>
+
+    <style name="AppBarTitleText" parent="Theme.Material3.Light">
+        <item name="android:fontFamily">@font/kodemono_medium</item>
+        <item name="android:textSize">22sp</item>
+        <item name="android:includeFontPadding">false</item>
+    </style>
+
+    <style name="AppBarSubtitleText" parent="Theme.Material3.Light">
+        <item name="android:fontFamily">@font/kodemono</item>
+        <item name="android:textSize">12sp</item>
+        <item name="android:includeFontPadding">false</item>
+    </style>
+
 </resources>

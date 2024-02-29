@@ -1,0 +1,47 @@
+{
+  "project_info": {
+    "project_number": "600908677820",
+    "project_id": "cameo-7bdc3",
+    "storage_bucket": "cameo-7bdc3.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:600908677820:android:f3117104a9c3bce25686b9",
+        "android_client_info": {
+          "package_name": "com.nurhaqhalim.cameo"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "600908677820-kmmrsfhh0ek6rav5qu824t97bofrhdj6.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.nurhaqhalim.cameo",
+            "certificate_hash": "6a0ac372ab1a1b55f6912115d129777189ec94d3"
+          }
+        },
+        {
+          "client_id": "600908677820-nimg4cvqp65rmnf2kdis9un2m1virpqj.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDFblDj4_D16k-O2ZqU-gZmlU0cpgOrMnk"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "600908677820-nimg4cvqp65rmnf2kdis9un2m1virpqj.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

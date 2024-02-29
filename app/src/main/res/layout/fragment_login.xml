@@ -1,0 +1,107 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".view.prelogin.LoginFragment">
+
+    <com.google.android.material.appbar.AppBarLayout
+        android:id="@+id/abl_login"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:background="@android:color/transparent">
+
+        <com.google.android.material.appbar.MaterialToolbar
+            android:id="@+id/mt_login"
+            android:layout_width="match_parent"
+            android:layout_height="?attr/actionBarSize"
+            app:title="@string/login_title"
+            app:titleCentered="true"
+            app:titleTextAppearance="@style/AppBarTitleText" />
+    </com.google.android.material.appbar.AppBarLayout>
+
+    <com.google.android.material.divider.MaterialDivider
+        android:id="@+id/v_login_app_bar_divider"
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:layout_below="@id/abl_login" />
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/til_login_email"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/v_login_app_bar_divider"
+        android:layout_marginHorizontal="16dp"
+        android:layout_marginTop="24dp"
+        app:errorIconDrawable="@android:color/transparent"
+        app:errorTextAppearance="@font/robotoslab"
+        app:helperText="@string/email_helper_text"
+        app:helperTextEnabled="true"
+        app:helperTextTextAppearance="@font/robotoslab"
+        tools:hint="@string/email_label">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/tiet_login_email"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:drawableStart="@drawable/ic_person"
+            android:drawablePadding="16dp"
+            android:fontFamily="@font/robotoslab"
+            android:includeFontPadding="false"
+            android:inputType="textEmailAddress" />
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/til_login_password"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/til_login_email"
+        android:layout_marginHorizontal="16dp"
+        android:layout_marginTop="24dp"
+        app:errorIconDrawable="@android:color/transparent"
+        app:errorTextAppearance="@font/robotoslab"
+        app:helperText="@string/password_helper_text"
+        app:helperTextEnabled="true"
+        app:helperTextTextAppearance="@font/robotoslab"
+        tools:hint="@string/password_label">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/tiet_login_password"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:drawableStart="@drawable/ic_password"
+            android:drawablePadding="16dp"
+            android:fontFamily="@font/robotoslab"
+            android:includeFontPadding="false"
+            android:inputType="textPassword" />
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <Button
+        android:id="@+id/btn_login"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/til_login_password"
+        android:layout_marginHorizontal="16dp"
+        android:layout_marginTop="24dp"
+        android:fontFamily="@font/robotoslab_medium"
+        android:textSize="14sp"
+        tools:text="@string/button_login" />
+
+    <TextView
+        android:id="@+id/tv_login_tnc"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/btn_login"
+        android:layout_marginHorizontal="16dp"
+        android:layout_marginTop="24dp"
+        android:clickable="true"
+        android:focusable="true"
+        android:fontFamily="@font/robotoslab"
+        android:gravity="center"
+        android:textAlignment="center"
+        android:textSize="12sp"
+        tools:text="@string/not_have_account_yet" />
+
+</RelativeLayout>

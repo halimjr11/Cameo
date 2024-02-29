@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/navigation_home.xml"
+    app:startDestination="@id/bottom_home">
+
+    <fragment
+        android:id="@+id/bottom_home"
+        android:name="com.nurhaqhalim.cameo.view.main.navigation.HomeFragment"
+        android:label="fragment_home"
+        tools:layout="@layout/fragment_home" />
+    <fragment
+        android:id="@+id/bottom_search"
+        android:name="com.nurhaqhalim.cameo.view.main.navigation.SearchFragment"
+        android:label="fragment_search"
+        tools:layout="@layout/fragment_search" />
+    <fragment
+        android:id="@+id/bottom_wishlist"
+        android:name="com.nurhaqhalim.cameo.view.main.navigation.WishListFragment"
+        android:label="fragment_wish_list"
+        tools:layout="@layout/fragment_wish_list" />
+    <fragment
+        android:id="@+id/bottom_transaction"
+        android:name="com.nurhaqhalim.cameo.view.main.navigation.TransactionFragment"
+        android:label="fragment_transaction"
+        tools:layout="@layout/fragment_transaction" />
+</navigation>

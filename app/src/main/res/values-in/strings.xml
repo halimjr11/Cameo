@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="already_have_account_yet">Sudah mempunyai akun? Register now</string>
+    <string name="button_register">Daftar</string>
+    <string name="password_label">Kata sandi</string>
+    <string name="password_helper_text">Minimal 8 karakter</string>
+    <string name="email_label">Surel</string>
+    <string name="email_helper_text">contoh: user@example.com</string>
+    <string name="register_title">Daftar</string>
+    <string name="button_login">Login</string>
+    <string name="not_have_account_yet">Belum mempunyai akun? Daftar sekarang</string>
+    <string name="login_title">Login</string>
+    <string name="intimacy_text">Keintiman yang lebih baik</string>
+    <string name="convenience_text">Dari kenyamanan rumah</string>
+    <string name="enjoy_text">Siap untuk dinikmati</string>
+    <string name="profile_title">Profile</string>
+    <string name="name_label">Name</string>
+    <string name="done_text">Done</string>
+    <string name="error_password">Password tidak valid</string>
+    <string name="error_email">Email tidak valid</string>
+    <string name="required_password">Email harus diisi</string>
+    <string name="required_email">Password harus diisi</string>
+    <string name="required_message">Mohon isi email dan password</string>
+    <string name="field_error_message">Mohon perbaiki data yang salah</string>
+    <string name="choose_image_title">Pilih gambar</string>
+    <string name="choose_image_camera">Kamera</string>
+    <string name="choose_image_gallery">Galeri</string>
+    <string name="required_profile_name">Nama profil harus diisi</string>
+    <string name="required_name_message">Mohon isi nama profile</string>
+    <string name="home_label">Home</string>
+    <string name="search_label">Search</string>
+    <string name="wishlist_label">Wishlist</string>
+    <string name="transaction_label">Transaction</string>
+    <string name="greetings_text">Halo, %name%</string>
+    <string name="title_cart">Cart</string>
+    <string name="title_notifications">Token</string>
+    <string name="settings_menu">Setting</string>
+</resources>

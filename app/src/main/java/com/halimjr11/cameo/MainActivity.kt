@@ -1,4 +1,4 @@
-package com.nurhaqhalim.cameo
+package com.halimjr11.cameo
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle

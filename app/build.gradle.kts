@@ -45,6 +45,11 @@ android {
 }
 
 dependencies {
+    implementation(project(":core:common"))
+    implementation(project(":core:components"))
+    implementation(project(":core:data"))
+    implementation(project(":core:domain"))
+    implementation(project(":core:navigation"))
     implementation(project(":core:resources"))
 
     testImplementation(libs.junit)

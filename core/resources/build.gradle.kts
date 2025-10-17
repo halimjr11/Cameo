@@ -41,4 +41,8 @@ dependencies {
     api(libs.appcompat)
     api(libs.material)
     api(libs.constraintlayout)
+    api(libs.lottie)
+    api(libs.coil)
+    api(libs.androidx.recyclerview)
+    api(libs.androidx.recyclerview.selection)
 }

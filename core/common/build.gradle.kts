@@ -6,7 +6,7 @@ plugins {
 }
 
 android {
-    namespace = "com.halimjr11.cameo.navigation"
+    namespace = "com.halimjr11.cameo.common"
     compileSdk = 36
 
     defaultConfig {
@@ -37,5 +37,8 @@ android {
 }
 
 dependencies {
-    implementation(libs.core.ktx)
+    api(libs.kotlinx.coroutines.core)
+    api(libs.kotlinx.coroutines.android)
+    api(libs.androidx.lifecycle.runtime.ktx)
+    api(libs.androidx.lifecycle.viewmodel.ktx)
 }

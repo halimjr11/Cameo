@@ -17,6 +17,7 @@ dependencyResolutionManagement {
 
 rootProject.name = "Cameo"
 include(":app")
+include(":core:common")
 include(":core:components")
 include(":core:data")
 include(":core:domain")

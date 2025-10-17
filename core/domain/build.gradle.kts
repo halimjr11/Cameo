@@ -38,6 +38,7 @@ android {
 }
 
 dependencies {
+    implementation(project(":core:common"))
     api(libs.core.ktx)
     api(libs.koin.android)
     api(libs.koin.core)

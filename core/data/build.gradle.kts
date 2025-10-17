@@ -1,22 +1,19 @@
 import org.jetbrains.kotlin.gradle.dsl.JvmTarget
 
 plugins {
-    alias(libs.plugins.android.application)
+    alias(libs.plugins.android.library)
     alias(libs.plugins.kotlin.android)
 }
 
 android {
-    namespace = "com.halimjr11.cameo"
+    namespace = "com.halimjr11.cameo.data"
     compileSdk = 36
 
     defaultConfig {
-        applicationId = "com.halimjr11.cameo"
         minSdk = 27
-        targetSdk = 36
-        versionCode = 1
-        versionName = "1.0"
 
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
+        consumerProguardFiles("consumer-rules.pro")
     }
 
     buildTypes {
@@ -37,16 +34,10 @@ android {
             jvmTarget.set(JvmTarget.JVM_17)
         }
     }
-    buildFeatures {
-        buildConfig = true
-        viewBinding = true
-    }
-    dynamicFeatures += setOf(":favorite")
 }
 
 dependencies {
-    implementation(project(":core:resources"))
-
+    implementation(libs.core.ktx)
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.test.ext.junit)
     androidTestImplementation(libs.androidx.test.espresso)

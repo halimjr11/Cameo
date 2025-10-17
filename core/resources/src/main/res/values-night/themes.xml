@@ -39,7 +39,11 @@
 
     <style name="TextAppearance.Cameo" />
 
-    <style name="Theme.Cameo" parent="Base.Theme.Cameo" />
+    <style name="Widget" />
+
+    <style name="Widget.Cameo" />
+
+    <style name="Widget.Cameo.MovieDetail" />
 
     <style name="Widget.Cameo.Card">
         <item name="android:background">?attr/colorSurface</item>

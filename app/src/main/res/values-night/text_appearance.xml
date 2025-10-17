@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- 🎬 Display / App Title -->
+    <style name="TextAppearance.Cameo.Display">
+        <item name="android:fontFamily">@font/montserrat_bold</item>
+        <item name="android:textSize">32sp</item>
+        <item name="android:textStyle">bold</item>
+        <item name="android:letterSpacing">-0.05</item>
+    </style>
+
+    <!-- 🎞️ Headline / Movie Title -->
+    <style name="TextAppearance.Cameo.Headline">
+        <item name="android:fontFamily">@font/montserrat_semibold</item>
+        <item name="android:textSize">24sp</item>
+        <item name="android:textStyle">normal</item>
+        <item name="android:letterSpacing">-0.025</item>
+    </style>
+
+    <!-- 📺 Subtitle / Section Title -->
+    <style name="TextAppearance.Cameo.Subtitle">
+        <item name="android:fontFamily">@font/inter_medium</item>
+        <item name="android:textSize">18sp</item>
+        <item name="android:textStyle">normal</item>
+        <item name="android:letterSpacing">0</item>
+    </style>
+
+    <!-- 📖 Body / Description -->
+    <style name="TextAppearance.Cameo.Body">
+        <item name="android:fontFamily">@font/inter_regular</item>
+        <item name="android:textSize">14sp</item>
+        <item name="android:textStyle">normal</item>
+        <item name="android:letterSpacing">0.015</item>
+        <item name="android:lineSpacingExtra">2dp</item>
+    </style>
+
+    <!-- 🏷️ Caption / Label -->
+    <style name="TextAppearance.Cameo.Caption">
+        <item name="android:fontFamily">@font/inter_regular</item>
+        <item name="android:textSize">12sp</item>
+        <item name="android:textStyle">normal</item>
+        <item name="android:letterSpacing">0.04</item>
+    </style>
+
+    <!-- 🔘 Button Text -->
+    <style name="TextAppearance.Cameo.Button">
+        <item name="android:fontFamily">@font/poppins_bold</item>
+        <item name="android:textSize">14sp</item>
+        <item name="android:textStyle">normal</item>
+        <item name="android:letterSpacing">0.01</item>
+        <item name="android:textAllCaps">true</item>
+        <item name="android:textColor">@color/colorAccent</item>
+    </style>
+</resources>

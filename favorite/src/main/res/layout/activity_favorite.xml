@@ -4,9 +4,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".view.feature.home.HomeFragment">
+    tools:context=".FavoriteActivity">
 
-    <!-- 🧭 Scrollable Content -->
     <androidx.core.widget.NestedScrollView
         android:id="@+id/nestedScroll"
         android:layout_width="0dp"
@@ -24,9 +23,8 @@
             android:layout_height="wrap_content"
             android:paddingBottom="32dp">
 
-            <!-- 🎬 Greeting -->
             <TextView
-                android:id="@+id/tvGreeting"
+                android:id="@+id/tvFavoriteGreeting"
                 style="@style/TextAppearance.Cameo.Headline"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
@@ -35,51 +33,28 @@
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
-                tools:text="Discover Movies" />
+                tools:text="Favorite Movies" />
 
-            <!-- 🧩 ViewPager2 - Discover -->
-            <androidx.viewpager2.widget.ViewPager2
-                android:id="@+id/vpDiscoverMovie"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="16dp"
-                android:padding="16dp"
-                app:layout_constraintTop_toBottomOf="@id/tvGreeting" />
-
-            <!-- 🎞 Recommended Title -->
-            <TextView
-                android:id="@+id/tvRecommendedTitle"
-                style="@style/TextAppearance.Cameo.Subtitle"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="16dp"
-                android:layout_marginTop="16dp"
-                android:text="Recommended Movies"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/vpDiscoverMovie" />
-
-            <!-- 🍿 Recommended RecyclerView -->
             <androidx.recyclerview.widget.RecyclerView
-                android:id="@+id/rvRecommended"
+                android:id="@+id/rvFavoriteRecommended"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="8dp"
                 android:clipToPadding="false"
-                android:orientation="horizontal"
+                android:orientation="vertical"
                 android:paddingStart="8dp"
                 android:paddingEnd="8dp"
                 app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/tvRecommendedTitle"
-                tools:listitem="@layout/item_recommended_movie" />
+                app:layout_constraintTop_toBottomOf="@id/tvFavoriteGreeting"
+                tools:listitem="@layout/item_movie_card" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
     </androidx.core.widget.NestedScrollView>
 
-    <!-- ⏳ Loading State -->
     <ProgressBar
-        android:id="@+id/progressHomeLoading"
+        android:id="@+id/progressFavoriteLoading"
         android:layout_width="48dp"
         android:layout_height="48dp"
         android:visibility="gone"
@@ -88,9 +63,8 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
-    <!-- ⚠️ Error View -->
     <com.halimjr11.cameo.components.ErrorView
-        android:id="@+id/errorHomeView"
+        android:id="@+id/errorFavoriteView"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         app:layout_constraintEnd_toEndOf="parent"

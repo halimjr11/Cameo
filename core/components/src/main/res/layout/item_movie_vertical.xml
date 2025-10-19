@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.google.android.material.card.MaterialCardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    style="@style/Widget.Cameo.Card"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    app:cardCornerRadius="16dp">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="16dp">
+
+        <!-- 🎞 Poster Image -->
+        <com.google.android.material.card.MaterialCardView
+            android:id="@+id/mcvPoster"
+            style="@style/Widget.Cameo.Card"
+            android:layout_width="120dp"
+            android:layout_height="180dp"
+            app:cardCornerRadius="12dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <ImageView
+                android:id="@+id/imgPoster"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:contentDescription="@string/movie_poster"
+                android:scaleType="centerCrop"
+                tools:src="@drawable/ic_cameo_background" />
+        </com.google.android.material.card.MaterialCardView>
+
+        <!-- 🎬 Movie Title -->
+        <TextView
+            android:id="@+id/tvTitle"
+            style="@style/TextAppearance.Cameo.MovieTitle"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="12dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@id/mcvPoster"
+            app:layout_constraintTop_toTopOf="@id/mcvPoster"
+            tools:text="Inception" />
+
+        <!-- ⭐ Rating -->
+        <TextView
+            android:id="@+id/tvRating"
+            style="@style/TextAppearance.Cameo.Rating"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="12dp"
+            android:layout_marginTop="4dp"
+            app:layout_constraintStart_toEndOf="@id/mcvPoster"
+            app:layout_constraintTop_toBottomOf="@id/tvTitle"
+            tools:text="⭐ 8.7" />
+
+        <!-- 📅 Release Year -->
+        <TextView
+            android:id="@+id/tvRelease"
+            style="@style/TextAppearance.Cameo.Caption"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="12dp"
+            android:layout_marginTop="2dp"
+            app:layout_constraintStart_toEndOf="@id/mcvPoster"
+            app:layout_constraintTop_toBottomOf="@id/tvRating"
+            tools:text="2023" />
+
+        <!-- 📝 Overview -->
+        <TextView
+            android:id="@+id/tvOverview"
+            style="@style/TextAppearance.Cameo.Body"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="12dp"
+            android:layout_marginTop="8dp"
+            android:layout_marginEnd="8dp"
+            android:ellipsize="end"
+            android:maxLines="3"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@id/mcvPoster"
+            app:layout_constraintTop_toBottomOf="@id/tvRelease"
+            tools:text="A mind-bending thriller where dream and reality collide." />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</com.google.android.material.card.MaterialCardView>

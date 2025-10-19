@@ -15,7 +15,7 @@
     <color name="textSecondary">#B0B8C1</color>
 
     <!-- Borders / Dividers -->
-    <color name="colorDivider">#2A3A4B</color>
+    <color name="colorDivider">#E2E8F0</color>
 
     <!-- State Colors -->
     <color name="colorHover">#FF6600</color>
@@ -23,4 +23,5 @@
 
     <!-- Shadows / Overlay -->
     <color name="colorShadow">#80000000</color>
+    <color name="black_transparent_50">#80000000</color>
 </resources>

@@ -25,4 +25,11 @@ class CameoRemoteRepositoryImpl(
         mapper.mapMovieDetail(response)
     }
 
+    override suspend fun getDetailCredit(
+        movieId: Int
+    ): DomainResult<List<MovieDetailDomain.CastDomain>> = safeApiCall {
+        val response = service.getMovieCredits(movieId)
+        mapper.mapMovieCredits(response.cast)
+    }
+
 }

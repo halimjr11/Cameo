@@ -3,6 +3,7 @@ import org.jetbrains.kotlin.gradle.dsl.JvmTarget
 plugins {
     alias(libs.plugins.android.dynamic.feature)
     alias(libs.plugins.kotlin.android)
+    alias(libs.plugins.androidx.navigation.safe.args)
 }
 android {
     namespace = "com.halimjr11.cameo.favorite"
@@ -37,17 +38,10 @@ android {
 }
 
 dependencies {
+    implementation(project(":app"))
     implementation(project(":core:common"))
     implementation(project(":core:components"))
     implementation(project(":core:domain"))
     implementation(project(":core:navigation"))
     implementation(project(":core:resources"))
-    implementation(libs.core.ktx)
-    implementation(libs.appcompat)
-    implementation(libs.material)
-    implementation(libs.androidx.activity)
-    implementation(libs.constraintlayout)
-    testImplementation(libs.junit)
-    androidTestImplementation(libs.androidx.test.ext.junit)
-    androidTestImplementation(libs.androidx.test.espresso)
 }

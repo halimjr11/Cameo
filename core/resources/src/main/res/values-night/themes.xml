@@ -45,14 +45,6 @@
 
     <style name="Widget.Cameo.MovieDetail" />
 
-    <style name="Widget.Cameo.Card" parent="Widget.MaterialComponents.CardView">
-        <item name="android:layout_height">wrap_content</item>
-        <item name="android:background">?attr/colorSurface</item>
-        <item name="android:foreground">?attr/selectableItemBackground</item>
-        <item name="android:elevation">6dp</item>
-        <item name="android:radius">16dp</item>
-    </style>
-
     <style name="Widget.Cameo.MovieImage">
         <item name="android:scaleType">centerCrop</item>
         <item name="android:adjustViewBounds">true</item>

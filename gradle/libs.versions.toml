@@ -2,6 +2,7 @@
 # Plugin versions
 agp = "8.13.0"
 coil = "2.7.0"
+featureDeliveryKtx = "2.1.0"
 koinAndroid = "4.1.1"
 koinAnnotations = "2.2.0"
 kotlin = "2.2.20"
@@ -11,6 +12,8 @@ ksp = "2.2.20-2.0.3"
 # Library versions
 coreKtx = "1.17.0"
 appcompat = "1.7.1"
+leakcanaryAndroid = "2.14"
+library = "4.2.0"
 lifecycleRuntimeKtx = "2.9.4"
 lottie = "6.6.10"
 material = "1.13.0"
@@ -26,6 +29,8 @@ retrofit = "3.0.0"
 roomRuntime = "2.8.2"
 timber = "5.0.1"
 activity = "1.11.0"
+navigationUiKtx = "2.9.5"
+activityVersion = "1.11.0"
 
 [libraries]
 # Core AndroidX
@@ -41,12 +46,15 @@ coil = { module = "io.coil-kt:coil", version.ref = "coil" }
 converter-gson = { module = "com.squareup.retrofit2:converter-gson", version.ref = "retrofit" }
 core-ktx = { module = "androidx.core:core-ktx", version.ref = "coreKtx" }
 appcompat = { module = "androidx.appcompat:appcompat", version.ref = "appcompat" }
+feature-delivery-ktx = { module = "com.google.android.play:feature-delivery-ktx", version.ref = "featureDeliveryKtx" }
 koin-android = { module = "io.insert-koin:koin-android", version.ref = "koinAndroid" }
 koin-annotations = { module = "io.insert-koin:koin-annotations", version.ref = "koinAnnotations" }
 koin-core = { module = "io.insert-koin:koin-core", version.ref = "koinAndroid" }
 koin-ksp-compiler = { module = "io.insert-koin:koin-ksp-compiler", version.ref = "koinAnnotations" }
 kotlinx-coroutines-android = { module = "org.jetbrains.kotlinx:kotlinx-coroutines-android", version.ref = "kotlinxCoroutinesCore" }
 kotlinx-coroutines-core = { module = "org.jetbrains.kotlinx:kotlinx-coroutines-core", version.ref = "kotlinxCoroutinesCore" }
+leakcanary-android = { module = "com.squareup.leakcanary:leakcanary-android", version.ref = "leakcanaryAndroid" }
+library = { module = "com.github.chuckerteam.chucker:library", version.ref = "library" }
 logging-interceptor = { module = "com.squareup.okhttp3:logging-interceptor", version.ref = "okhttp" }
 lottie = { module = "com.airbnb.android:lottie", version.ref = "lottie" }
 material = { module = "com.google.android.material:material", version.ref = "material" }
@@ -54,12 +62,14 @@ constraintlayout = { module = "androidx.constraintlayout:constraintlayout", vers
 okhttp = { module = "com.squareup.okhttp3:okhttp", version.ref = "okhttp" }
 retrofit = { module = "com.squareup.retrofit2:retrofit", version.ref = "retrofit" }
 timber = { module = "com.jakewharton.timber:timber", version.ref = "timber" }
+androidx-navigation-fragment-ktx = { group = "androidx.navigation", name = "navigation-fragment-ktx", version.ref = "navigationUiKtx" }
+androidx-navigation-ui-ktx = { group = "androidx.navigation", name = "navigation-ui-ktx", version.ref = "navigationUiKtx" }
 
 # Testing
 junit = { module = "junit:junit", version.ref = "junit" }
 androidx-test-ext-junit = { module = "androidx.test.ext:junit", version.ref = "extJunit" }
 androidx-test-espresso = { module = "androidx.test.espresso:espresso-core", version.ref = "espresso" }
-androidx-activity = { group = "androidx.activity", name = "activity", version.ref = "activity" }
+androidx-activity = { group = "androidx.activity", name = "activity", version.ref = "activityVersion" }
 
 [plugins]
 android-application = { id = "com.android.application", version.ref = "agp" }
@@ -67,3 +77,4 @@ kotlin-android = { id = "org.jetbrains.kotlin.android", version.ref = "kotlin" }
 android-library = { id = "com.android.library", version.ref = "agp" }
 ksp = { id = "com.google.devtools.ksp", version.ref = "ksp" }
 android-dynamic-feature = { id = "com.android.dynamic-feature", version.ref = "agp" }
+androidx-navigation-safe-args = { id = "androidx.navigation.safeargs.kotlin", version.ref = "navigationUiKtx" }

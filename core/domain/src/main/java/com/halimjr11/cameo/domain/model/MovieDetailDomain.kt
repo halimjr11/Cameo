@@ -16,6 +16,7 @@ data class MovieDetailDomain(
     data class CastDomain(
         val id: Int = 0,
         val name: String = "",
+        val originalName: String = "",
         val profileUrl: String = "",
         val character: String = ""
     )

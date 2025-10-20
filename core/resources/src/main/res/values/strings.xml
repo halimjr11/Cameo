@@ -5,4 +5,16 @@
     <string name="retry_button">Retry</string>
     <string name="something_went_wrong">Something went wrong!</string>
     <string name="actor_photo">Actor Photo</string>
+    <string name="rating_tmdb">on TMDB</string>
+    <string name="detail_language_available">Available in language: </string>
+    <string name="detail_duration">Duration : </string>
+    <string name="detail_release">Release date : </string>
+    <string name="settings_title">Settings</string>
+    <string name="theme_mode">Dark Mode</string>
+    <string name="language">Language</string>
+    <string name="language_hint">Switch between Bahasa and English</string>
+    <string name="setting">Setting</string>
+    <string name="action_favorite">Action Favorite</string>
+    <string name="cast_title">Cast</string>
+    <string name="story_plot">Story Plot</string>
 </resources>

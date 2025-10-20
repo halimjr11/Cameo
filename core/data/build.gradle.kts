@@ -1,4 +1,5 @@
 import org.jetbrains.kotlin.gradle.dsl.JvmTarget
+import java.util.Properties
 
 plugins {
     alias(libs.plugins.android.library)
@@ -13,8 +14,21 @@ android {
     defaultConfig {
         minSdk = 27
 
+        val localProperties = Properties()
+        val localPropertiesFile = rootProject.file("local.properties")
+        if (localPropertiesFile.exists()) {
+            localProperties.load(localPropertiesFile.inputStream())
+        }
+        val apiKey: String = localProperties.getProperty("API_KEY").orEmpty()
+        buildConfigField("String", "API_KEY", "\"$apiKey\"")
+
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
         consumerProguardFiles("consumer-rules.pro")
+
+    }
+
+    ksp {
+        arg("room.schemaLocation", "$projectDir/schemas")
     }
 
     buildTypes {
@@ -35,6 +49,9 @@ android {
             jvmTarget.set(JvmTarget.JVM_17)
         }
     }
+    buildFeatures {
+        buildConfig = true
+    }
 }
 
 dependencies {
@@ -48,6 +65,7 @@ dependencies {
     api(libs.okhttp)
     api(libs.logging.interceptor)
     api(libs.androidx.paging.runtime.ktx)
+    debugApi(libs.library)
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.test.ext.junit)
     androidTestImplementation(libs.androidx.test.espresso)

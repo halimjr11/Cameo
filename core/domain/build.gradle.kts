@@ -44,8 +44,8 @@ dependencies {
     api(libs.koin.core)
     api(libs.koin.annotations)
     ksp(libs.koin.ksp.compiler)
-    implementation(libs.timber)
-    testImplementation(libs.junit)
-    androidTestImplementation(libs.androidx.test.ext.junit)
-    androidTestImplementation(libs.androidx.test.espresso)
+    api(libs.timber)
+    testApi(libs.junit)
+    androidTestApi(libs.androidx.test.ext.junit)
+    androidTestApi(libs.androidx.test.espresso)
 }

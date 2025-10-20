@@ -12,10 +12,18 @@
         <dist:fusing dist:include="true" />
     </dist:module>
 
-    <application>
+    <application android:icon="@mipmap/ic_cameo">
         <activity
             android:name=".FavoriteActivity"
-            android:exported="false" />
+            android:exported="true">
+            <intent-filter>
+                <action android:name="android.intent.action.VIEW" />
+                <category android:name="android.intent.category.DEFAULT" />
+                <data
+                    android:host="favorites"
+                    android:scheme="cameo" />
+            </intent-filter>
+        </activity>
     </application>
 
 </manifest>

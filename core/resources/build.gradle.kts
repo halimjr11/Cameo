@@ -45,4 +45,9 @@ dependencies {
     api(libs.coil)
     api(libs.androidx.recyclerview)
     api(libs.androidx.recyclerview.selection)
+    api(libs.androidx.navigation.fragment.ktx)
+    api(libs.androidx.navigation.ui.ktx)
+    testApi(libs.junit)
+    androidTestApi(libs.androidx.test.ext.junit)
+    androidTestApi(libs.androidx.test.espresso)
 }

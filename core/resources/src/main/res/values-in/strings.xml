@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Cameo</string>
+    <string name="title_favorite">Film Favorit</string>
+    <string name="movie_poster">Poster Film</string>
+    <string name="retry_button">Coba Lagi</string>
+    <string name="something_went_wrong">Terjadi kesalahan!</string>
+    <string name="actor_photo">Foto Aktor</string>
+    <string name="rating_tmdb">di TMDB</string>
+    <string name="detail_language_available">Tersedia dalam bahasa: </string>
+    <string name="detail_duration">Durasi: </string>
+    <string name="detail_release">Tanggal rilis: </string>
+    <string name="settings_title">Pengaturan</string>
+    <string name="theme_mode">Mode Gelap</string>
+    <string name="language">Bahasa</string>
+    <string name="language_hint">Beralih antara Bahasa Indonesia dan Inggris</string>
+    <string name="setting">Pengaturan</string>
+    <string name="action_favorite">Action Favorite</string>
+    <string name="cast_title">Cast</string>
+    <string name="story_plot">Story Plot</string>
+</resources>

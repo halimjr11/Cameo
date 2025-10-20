@@ -60,7 +60,7 @@ class FavoriteActivity : AppCompatActivity(), AndroidScopeComponent {
             addItemDecoration(
                 SpacingItemDecoration(
                     spacing = resources.getDimensionPixelSize(R.dimen.spacing_small),
-                    orientation = RecyclerView.HORIZONTAL,
+                    orientation = RecyclerView.VERTICAL,
                     includeEdge = true
                 )
             )

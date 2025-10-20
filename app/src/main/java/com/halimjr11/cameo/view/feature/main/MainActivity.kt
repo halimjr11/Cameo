@@ -34,7 +34,10 @@ class MainActivity : AppCompatActivity() {
         val movieId = intent?.getIntExtra(MOVIE_ID, 0)
         if (movieId != 0) {
             val action =
-                HomeFragmentDirections.actionHomeFragmentToMovieDetailFragment(movieId.orZero())
+                HomeFragmentDirections.actionHomeFragmentToMovieDetailFragment(
+                    idMovie = movieId.orZero(),
+                    isFromFavorite = true
+                )
             navController.navigate(action)
         }
     }

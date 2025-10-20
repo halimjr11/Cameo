@@ -8,7 +8,7 @@ import org.koin.dsl.module
 
 fun loadDetailModule() {
     val viewModel = module {
-        scope<MovieDetailFragment> { scoped { DetailViewModel(get(), get()) } }
+        scope<MovieDetailFragment> { scoped { DetailViewModel(get(), get(), get()) } }
     }
     val useCase = module {
         scope<MovieDetailFragment> { scoped { GetDetailUseCase(get(), get()) } }

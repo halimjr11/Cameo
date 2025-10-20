@@ -4,11 +4,11 @@
     <color name="colorPrimary">#1E3C5A</color>
     <color name="colorPrimaryDark">#0B1623</color>
     <color name="colorAccent">#FF6600</color>
+    <color name="colorSecondary">#E91E63</color>
 
     <!-- Backgrounds -->
     <color name="colorBackground">#000000</color>
     <color name="colorSurface">#142334</color>
-    <color name="colorCard">#142334</color>
 
     <!-- Text -->
     <color name="textPrimary">#FFFFFF</color>
@@ -19,7 +19,6 @@
 
     <!-- State Colors -->
     <color name="colorHover">#FF6600</color>
-    <color name="colorDisabled">#555B63</color>
 
     <!-- Shadows / Overlay -->
     <color name="colorShadow">#80000000</color>

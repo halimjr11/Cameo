@@ -1,16 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="black">#FF000000</color>
-    <color name="white">#FFFFFFFF</color>
     <!-- Brand Colors -->
     <color name="colorPrimary">#1E3C5A</color>
     <color name="colorPrimaryDark">#0B1623</color>
     <color name="colorAccent">#FF6600</color>
+    <color name="colorSecondary">#E91E63</color>
 
     <!-- Backgrounds -->
     <color name="colorBackground">#F9FAFB</color>
     <color name="colorSurface">#FFFFFF</color>
-    <color name="colorCard">#FFFFFF</color>
 
     <!-- Text -->
     <color name="textPrimary">#0B1623</color>
@@ -21,7 +19,6 @@
 
     <!-- State Colors -->
     <color name="colorHover">#FFE4CC</color>
-    <color name="colorDisabled">#C0C4C9</color>
 
     <!-- Shadows / Overlay -->
     <color name="colorShadow">#1F000000</color>

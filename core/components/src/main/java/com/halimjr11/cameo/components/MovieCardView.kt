@@ -37,6 +37,8 @@ class MovieCardView @JvmOverloads constructor(
         title: String,
         rating: String,
         imageUrl: String,
+        overview: String? = null,
+        releaseDate: String? = null,
         @DrawableRes imageRes: Int = R.drawable.ic_placeholder
     ) {
         when (binding) {
@@ -59,6 +61,8 @@ class MovieCardView @JvmOverloads constructor(
                     append("⭐ ")
                     append(rating)
                 }
+                tvRelease.text = releaseDate
+                tvOverview.text = overview
                 imgPoster.load(imageUrl) {
                     crossfade(true)
                     placeholder(imageRes)

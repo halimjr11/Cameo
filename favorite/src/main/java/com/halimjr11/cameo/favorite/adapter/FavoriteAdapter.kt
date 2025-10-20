@@ -5,8 +5,8 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.halimjr11.cameo.common.Constants.IMAGE_URL
-import com.halimjr11.cameo.components.databinding.ItemListMovieBinding
 import com.halimjr11.cameo.domain.model.MovieDomain
+import com.halimjr11.cameo.favorite.databinding.ItemListFavoriteBinding
 import com.halimjr11.cameo.favorite.utils.MovieDiffUtils
 
 class FavoriteAdapter : ListAdapter<MovieDomain, FavoriteAdapter.FavoriteViewHolder>(
@@ -22,7 +22,7 @@ class FavoriteAdapter : ListAdapter<MovieDomain, FavoriteAdapter.FavoriteViewHol
         parent: ViewGroup,
         viewType: Int
     ): FavoriteViewHolder = FavoriteViewHolder(
-        ItemListMovieBinding.inflate(
+        ItemListFavoriteBinding.inflate(
             LayoutInflater.from(parent.context),
             parent,
             false
@@ -36,7 +36,7 @@ class FavoriteAdapter : ListAdapter<MovieDomain, FavoriteAdapter.FavoriteViewHol
         holder.bind(getItem(position))
     }
 
-    inner class FavoriteViewHolder(private val binding: ItemListMovieBinding) :
+    inner class FavoriteViewHolder(private val binding: ItemListFavoriteBinding) :
         RecyclerView.ViewHolder(binding.root) {
         fun bind(movie: MovieDomain) = with(binding) {
             root.run {
@@ -46,7 +46,9 @@ class FavoriteAdapter : ListAdapter<MovieDomain, FavoriteAdapter.FavoriteViewHol
                     imageUrl = buildString {
                         append(IMAGE_URL)
                         append(movie.posterUrl)
-                    }
+                    },
+                    releaseDate = movie.releaseDate,
+                    overview = movie.overview
                 )
                 setOnClickListener {
                     onCardClick?.invoke(movie)

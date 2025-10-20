@@ -32,23 +32,9 @@
                 android:padding="16dp"
                 android:text="@string/discover_movies_title"
                 android:textStyle="bold"
-                app:layout_constraintEnd_toStartOf="@id/ibActionFav"
+                app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
-
-            <ImageButton
-                android:id="@+id/ibActionFav"
-                android:layout_width="48dp"
-                android:layout_height="48dp"
-                android:layout_marginStart="16dp"
-                android:layout_marginTop="16dp"
-                android:background="@android:color/transparent"
-                android:contentDescription="@string/action_favorite"
-                android:src="@drawable/baseline_favorite_24"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toEndOf="@id/tvGreeting"
-                app:layout_constraintTop_toTopOf="@id/tvGreeting"
-                app:tint="?attr/colorAccent" />
 
             <!-- 🧩 ViewPager2 - Discover -->
             <androidx.viewpager2.widget.ViewPager2
@@ -66,7 +52,6 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="16dp"
-                android:layout_marginTop="16dp"
                 android:text="@string/recommended_movies_title"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/vpDiscoverMovie" />
@@ -107,5 +92,50 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
+
+
+    <com.google.android.material.floatingactionbutton.ExtendedFloatingActionButton
+        android:id="@+id/fabSetting"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="24dp"
+        android:layout_marginBottom="160dp"
+        android:text="@string/setting"
+        android:visibility="gone"
+        app:backgroundTint="?attr/colorPrimary"
+        app:icon="@drawable/ic_settings"
+        app:iconTint="@android:color/white"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent" />
+
+    <!-- Extended FAB: Favorite -->
+    <com.google.android.material.floatingactionbutton.ExtendedFloatingActionButton
+        android:id="@+id/fabFavorite"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="24dp"
+        android:layout_marginBottom="100dp"
+        android:text="@string/favorite"
+        android:visibility="gone"
+        app:backgroundTint="?attr/colorPrimary"
+        app:icon="@drawable/ic_favorite_24"
+        app:iconTint="@android:color/white"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent" />
+
+    <!-- Main FAB -->
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/fabMain"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="24dp"
+        android:layout_marginBottom="24dp"
+        android:contentDescription="@string/fab_action"
+        app:backgroundTint="?attr/colorPrimary"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:srcCompat="@drawable/ic_action"
+        app:tint="@android:color/white" />
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>

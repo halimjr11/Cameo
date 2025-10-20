@@ -9,20 +9,30 @@
         android:id="@+id/homeFragment"
         android:name="com.halimjr11.cameo.view.feature.home.HomeFragment"
         android:label="fragment_home"
-        tools:layout="@layout/fragment_home" >
+        tools:layout="@layout/fragment_home">
         <action
             android:id="@+id/action_homeFragment_to_movieDetailFragment"
             app:destination="@id/movieDetailFragment" />
+        <action
+            android:id="@+id/action_homeFragment_to_settingFragment"
+            app:destination="@id/settingFragment" />
     </fragment>
     <fragment
         android:id="@+id/movieDetailFragment"
         android:name="com.halimjr11.cameo.view.feature.detail.MovieDetailFragment"
         android:label="fragment_movie_detail"
-        tools:layout="@layout/fragment_movie_detail" >
-        <argument android:name="idMovie" app:argType="integer" android:defaultValue="0"/>
+        tools:layout="@layout/fragment_movie_detail">
+        <argument
+            android:name="idMovie"
+            android:defaultValue="0"
+            app:argType="integer" />
+        <argument
+            android:name="isFromFavorite"
+            android:defaultValue="false"
+            app:argType="boolean" />
     </fragment>
     <fragment
-        android:id="@+id/settingsFragment"
+        android:id="@+id/settingFragment"
         android:name="com.halimjr11.cameo.view.feature.settings.SettingsFragment"
         android:label="fragment_settings"
         tools:layout="@layout/fragment_settings" />

@@ -3,6 +3,7 @@ package com.halimjr11.cameo.data.local.mapper.impl
 import com.halimjr11.cameo.common.coroutines.CoroutineDispatcherProvider
 import com.halimjr11.cameo.data.local.mapper.LocalDataMapper
 import com.halimjr11.cameo.data.local.model.MovieEntity
+import com.halimjr11.cameo.domain.model.MovieDetailDomain
 import com.halimjr11.cameo.domain.model.MovieDomain
 import kotlinx.coroutines.withContext
 
@@ -27,7 +28,7 @@ class LocalDataMapperImpl(
     }
 
     override suspend fun mapFavoriteDomainToEntity(
-        domain: MovieDomain
+        domain: MovieDetailDomain
     ): MovieEntity = withContext(dispatcher.io) {
         domain.let {
             MovieEntity(
@@ -37,8 +38,7 @@ class LocalDataMapperImpl(
                 backdropUrl = it.backdropUrl,
                 rating = it.rating,
                 releaseDate = it.releaseDate,
-                overview = it.overview,
-                adult = it.adult
+                overview = it.overview
             )
         }
     }

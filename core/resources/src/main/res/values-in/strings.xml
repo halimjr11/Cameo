@@ -15,11 +15,12 @@
     <string name="language">Bahasa</string>
     <string name="language_hint">Beralih antara Bahasa Indonesia dan Inggris</string>
     <string name="setting">Pengaturan</string>
-    <string name="action_favorite">Action Favorite</string>
-    <string name="cast_title">Cast</string>
-    <string name="story_plot">Story Plot</string>
-    <string name="fab_action">Fab Action</string>
-    <string name="favorite">Favorite</string>
+    <string name="action_favorite">Aksi Favorit</string>
+    <string name="cast_title">Pemeran</string>
+    <string name="story_plot">Plot Cerita</string>
+    <string name="fab_action">Fab Aksi</string>
+    <string name="favorite">Favorit</string>
     <string name="recommended_movies_title">Film Rekomendasi</string>
     <string name="discover_movies_title">Temukan Film</string>
+    <string name="favorite_movies">Film Favorit</string>
 </resources>

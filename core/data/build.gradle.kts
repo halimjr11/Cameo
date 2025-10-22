@@ -65,6 +65,7 @@ dependencies {
     api(libs.okhttp)
     api(libs.logging.interceptor)
     api(libs.androidx.paging.runtime.ktx)
+    implementation(libs.android.database.sqlcipher)
     debugApi(libs.library)
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.test.ext.junit)

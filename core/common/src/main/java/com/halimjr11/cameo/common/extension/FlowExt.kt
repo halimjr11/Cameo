@@ -1,4 +1,4 @@
-package com.halimjr11.cameo.common
+package com.halimjr11.cameo.common.extension
 
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.LifecycleOwner

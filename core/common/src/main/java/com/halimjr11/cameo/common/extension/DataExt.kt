@@ -1,7 +1,4 @@
-package com.halimjr11.cameo.common
-
-import android.net.http.HttpException
-import java.io.IOException
+package com.halimjr11.cameo.common.extension
 
 fun Boolean?.orFalse(): Boolean = this ?: false
 

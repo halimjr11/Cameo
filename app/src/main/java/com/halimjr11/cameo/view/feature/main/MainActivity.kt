@@ -7,7 +7,7 @@ import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
 import androidx.navigation.NavController
 import androidx.navigation.fragment.NavHostFragment
-import com.halimjr11.cameo.common.orZero
+import com.halimjr11.cameo.common.extension.orZero
 import com.halimjr11.cameo.databinding.ActivityMainBinding
 import com.halimjr11.cameo.view.feature.home.HomeFragmentDirections
 

@@ -2,9 +2,9 @@ package com.halimjr11.cameo.data.network.mapper.impl
 
 import com.halimjr11.cameo.common.helper.DateFormatter
 import com.halimjr11.cameo.common.coroutines.CoroutineDispatcherProvider
-import com.halimjr11.cameo.common.orDoubleZero
-import com.halimjr11.cameo.common.orFalse
-import com.halimjr11.cameo.common.orZero
+import com.halimjr11.cameo.common.extension.orDoubleZero
+import com.halimjr11.cameo.common.extension.orFalse
+import com.halimjr11.cameo.common.extension.orZero
 import com.halimjr11.cameo.data.network.mapper.RemoteDataMapper
 import com.halimjr11.cameo.data.network.model.MovieCreditResponse
 import com.halimjr11.cameo.data.network.model.MovieDetailResponse

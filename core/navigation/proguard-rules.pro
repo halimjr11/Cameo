@@ -19,3 +19,5 @@
 # If you keep the line number information, uncomment this to
 # hide the original source file name.
 #-renamesourcefileattribute SourceFile
+-keep interface com.halimjr11.cameo.navigation.** { *; }
+-keepnames interface com.halimjr11.cameo.navigation.** { *; }

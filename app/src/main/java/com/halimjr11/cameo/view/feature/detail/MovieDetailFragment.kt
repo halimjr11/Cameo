@@ -10,7 +10,7 @@ import coil.load
 import com.google.android.material.color.MaterialColors
 import com.halimjr11.cameo.common.Constants.IMAGE_URL
 import com.halimjr11.cameo.common.UiState
-import com.halimjr11.cameo.common.launchAndCollect
+import com.halimjr11.cameo.common.extension.launchAndCollect
 import com.halimjr11.cameo.components.BaseFragment
 import com.halimjr11.cameo.databinding.FragmentMovieDetailBinding
 import com.halimjr11.cameo.domain.model.MovieDetailDomain

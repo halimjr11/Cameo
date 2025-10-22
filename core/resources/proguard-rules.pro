@@ -19,3 +19,9 @@
 # If you keep the line number information, uncomment this to
 # hide the original source file name.
 #-renamesourcefileattribute SourceFile
+-keep class com.halimjr11.cameo.resources.R {
+    <fields>;
+}
+-keepclassmembers class com.halimjr11.cameo.resources.R$* {
+    public static <fields>;
+}

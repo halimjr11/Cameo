@@ -3,7 +3,7 @@ package com.halimjr11.cameo.view.feature.settings
 import androidx.core.content.res.ResourcesCompat
 import com.halimjr11.cameo.common.Constants.LANG_EN
 import com.halimjr11.cameo.common.Constants.LANG_ID
-import com.halimjr11.cameo.common.launchAndCollect
+import com.halimjr11.cameo.common.extension.launchAndCollect
 import com.halimjr11.cameo.components.BaseFragment
 import com.halimjr11.cameo.databinding.FragmentSettingsBinding
 import com.halimjr11.cameo.resources.R

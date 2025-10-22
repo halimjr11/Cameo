@@ -13,7 +13,7 @@ import com.google.android.material.floatingactionbutton.ExtendedFloatingActionBu
 import com.google.android.material.floatingactionbutton.FloatingActionButton
 import com.halimjr11.cameo.common.Constants.FAVORITE_URI_SCHEME
 import com.halimjr11.cameo.common.UiState
-import com.halimjr11.cameo.common.launchAndCollect
+import com.halimjr11.cameo.common.extension.launchAndCollect
 import com.halimjr11.cameo.components.BaseFragment
 import com.halimjr11.cameo.components.SpacingItemDecoration
 import com.halimjr11.cameo.databinding.FragmentHomeBinding

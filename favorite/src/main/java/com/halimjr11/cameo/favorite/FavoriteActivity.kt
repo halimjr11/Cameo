@@ -9,7 +9,7 @@ import androidx.core.view.isVisible
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.halimjr11.cameo.common.UiState
-import com.halimjr11.cameo.common.launchAndCollect
+import com.halimjr11.cameo.common.extension.launchAndCollect
 import com.halimjr11.cameo.components.SpacingItemDecoration
 import com.halimjr11.cameo.favorite.adapter.FavoriteAdapter
 import com.halimjr11.cameo.favorite.databinding.ActivityFavoriteBinding

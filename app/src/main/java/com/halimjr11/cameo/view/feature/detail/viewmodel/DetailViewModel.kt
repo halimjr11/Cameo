@@ -6,15 +6,17 @@ import com.halimjr11.cameo.common.DomainResult
 import com.halimjr11.cameo.common.UiState
 import com.halimjr11.cameo.common.coroutines.CoroutineDispatcherProvider
 import com.halimjr11.cameo.domain.model.MovieDetailDomain
-import com.halimjr11.cameo.domain.repository.CameoLocalRepository
+import com.halimjr11.cameo.domain.usecase.GetCheckFavUseCase
 import com.halimjr11.cameo.domain.usecase.GetDetailUseCase
+import com.halimjr11.cameo.domain.usecase.GetToggleFavoriteUseCase
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.launch
 
 class DetailViewModel(
-    private val localRepository: CameoLocalRepository,
     private val getDetailUseCase: GetDetailUseCase,
+    private val getCheckFavUseCase: GetCheckFavUseCase,
+    private val getToggleFavoriteUseCase: GetToggleFavoriteUseCase,
     private val dispatchers: CoroutineDispatcherProvider
 ) : ViewModel() {
     private val _detailMovie: MutableStateFlow<UiState<MovieDetailDomain>> =
@@ -25,7 +27,7 @@ class DetailViewModel(
     val isFavorite: StateFlow<Boolean> = _isFavorite
 
     fun checkFavorite(id: Int) = viewModelScope.launch(dispatchers.io) {
-        val result = localRepository.checkFavoriteMovie(id)
+        val result = getCheckFavUseCase(id)
         _isFavorite.value = result
     }
 
@@ -47,11 +49,7 @@ class DetailViewModel(
     fun toggleFavorite(
         movieDetailDomain: MovieDetailDomain
     ) = viewModelScope.launch(dispatchers.io) {
-        if (_isFavorite.value) {
-            localRepository.deleteFavoriteMovie(movieDetailDomain)
-        } else {
-            localRepository.insertFavoriteMovie(movieDetailDomain)
-        }
+        getToggleFavoriteUseCase(movieDetailDomain, _isFavorite.value)
         _isFavorite.value = !_isFavorite.value
     }
 

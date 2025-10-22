@@ -19,8 +19,18 @@ android {
         if (localPropertiesFile.exists()) {
             localProperties.load(localPropertiesFile.inputStream())
         }
+
         val apiKey: String = localProperties.getProperty("API_KEY").orEmpty()
+        val cert1: String = localProperties.getProperty("CERT_1").orEmpty()
+        val cert2: String = localProperties.getProperty("CERT_2").orEmpty()
+        val cert3: String = localProperties.getProperty("CERT_3").orEmpty()
+        val baseUrl: String = localProperties.getProperty("BASE_URL").orEmpty()
+
+        buildConfigField("String", "BASE_URL", "\"$baseUrl\"")
         buildConfigField("String", "API_KEY", "\"$apiKey\"")
+        buildConfigField("String", "CERT_1", "\"$cert1\"")
+        buildConfigField("String", "CERT_2", "\"$cert2\"")
+        buildConfigField("String", "CERT_3", "\"$cert3\"")
 
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
         consumerProguardFiles("consumer-rules.pro")
@@ -65,7 +75,8 @@ dependencies {
     api(libs.okhttp)
     api(libs.logging.interceptor)
     api(libs.androidx.paging.runtime.ktx)
-    implementation(libs.android.database.sqlcipher)
+    api(libs.android.database.sqlcipher)
+    api(libs.androidx.sqlite)
     debugApi(libs.library)
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.test.ext.junit)

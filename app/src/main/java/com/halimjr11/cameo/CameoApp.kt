@@ -1,6 +1,7 @@
 package com.halimjr11.cameo
 
 import android.app.Application
+import com.halimjr11.cameo.data.di.DataModule
 import com.halimjr11.cameo.di.AppModule
 import org.koin.android.ext.koin.androidContext
 import org.koin.android.ext.koin.androidLogger
@@ -12,7 +13,7 @@ class CameoApp : Application() {
         startKoin {
             androidLogger()
             androidContext(this@CameoApp)
-            modules(AppModule.getAppModules())
+            modules(AppModule.getAppModules() + DataModule.getDataModule())
         }
     }
 }

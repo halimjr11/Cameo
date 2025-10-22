@@ -48,6 +48,7 @@
 -keep class okhttp3.Response { *; }
 -keep class okhttp3.Interceptor { *; }
 -keep class okhttp3.logging.HttpLoggingInterceptor { *; }
+-keep class com.github.chuckerteam.chucker.library.** { *; }
 
 # SSL Pinning (certificate pinner)
 -keep class okhttp3.CertificatePinner { *; }

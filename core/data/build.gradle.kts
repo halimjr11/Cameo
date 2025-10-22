@@ -78,6 +78,7 @@ dependencies {
     api(libs.android.database.sqlcipher)
     api(libs.androidx.sqlite)
     debugApi(libs.library)
+    releaseImplementation(libs.library.no.op)
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.test.ext.junit)
     androidTestImplementation(libs.androidx.test.espresso)

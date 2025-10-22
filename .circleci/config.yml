@@ -25,7 +25,7 @@ jobs:  # List of jobs runnable in workflows
       - restore_cache:  # Speed up builds by restoring Gradle caches from previous runs
           name: Restore Gradle cache  # Human-friendly step name
           keys:  # A list of cache keys to attempt to restore
-            - v1-gradle-{{ checksum "gradle/wrapper/gradle-wrapper.properties" }}-{{ checksum "settings.gradle" }}-{{ checksum "settings.gradle.kts" }}-{{ checksum "build.gradle" }}-{{ checksum "build.gradle.kts" }}-{{ checksum "gradle/libs.versions.toml" }}  # Primary cache key including significant Gradle files
+            - v1-gradle-{{ checksum "gradle/wrapper/gradle-wrapper.properties" }}-{{ checksum "settings.gradle.kts" }}-{{ checksum "build.gradle.kts" }}-{{ checksum "gradle/libs.versions.toml" }}  # Primary cache key including significant Gradle files
             - v1-gradle-  # Fallback to any cache with this prefix
 
       - run:  # Pre-download dependencies to warm cache and fail fast on dependency issues
@@ -34,7 +34,7 @@ jobs:  # List of jobs runnable in workflows
 
       - save_cache:  # Save Gradle caches after dependency resolution
           name: Save Gradle cache  # Human-friendly step name
-          key: v1-gradle-{{ checksum "gradle/wrapper/gradle-wrapper.properties" }}-{{ checksum "settings.gradle" }}-{{ checksum "settings.gradle.kts" }}-{{ checksum "build.gradle" }}-{{ checksum "build.gradle.kts" }}-{{ checksum "gradle/libs.versions.toml" }}  # Cache key matching restore step
+          key: v1-gradle-{{ checksum "gradle/wrapper/gradle-wrapper.properties" }}-{{ checksum "settings.gradle.kts" }}-{{ checksum "build.gradle.kts" }}-{{ checksum "gradle/libs.versions.toml" }}  # Cache key matching restore step
           paths:  # Directories to cache
             - ~/.gradle/caches  # Gradle caches (dependencies, build caches)
             - ~/.gradle/wrapper  # Gradle wrapper distributions

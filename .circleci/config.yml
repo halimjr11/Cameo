@@ -5,7 +5,7 @@ version: 2.1  # Config schema version used by CircleCI
 executors:  # A map of named execution environments
   android_executor:  # Custom executor for Android builds
     docker:  # Use a Docker image to run jobs
-      - image: cimg/android:2024.06  # Official CircleCI Android image with SDK/NDK and Java preinstalled
+      - image: cimg/android:2024.04  # Official CircleCI Android image; using a stable, existing tag to avoid manifest errors
     resource_class: large  # Allocate more CPU/RAM for Gradle builds
     environment:  # Global environment variables for this executor
       JVM_OPTS: -Xmx2048m  # Increase JVM heap to reduce OOM risk

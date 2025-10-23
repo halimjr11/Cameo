@@ -1,6 +1,6 @@
 # 🎬 Cameo - Movie & TV Show Discovery App
 
-[![CircleCI](https://dl.circleci.com/status-badge/img/gh/halimjr11/Cameo/tree/main.svg?style=svg)](https://dl.circleci.com/status-badge/redirect/gh/halimjr11/Cameo/tree/main)
+[![CircleCI](https://dl.circleci.com/status-badge/img/gh/halimjr11/Cameo/tree/MADE%2Fsubmission-1.svg?style=svg)](https://dl.circleci.com/status-badge/redirect/gh/halimjr11/Cameo/tree/MADE%2Fsubmission-1)
 
 ## 📱 Screenshots
 <div align="center">

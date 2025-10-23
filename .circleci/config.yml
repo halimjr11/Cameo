@@ -112,30 +112,64 @@ commands:
             git config --global user.name "CircleCI"
 
       - run:
+          name: Install jq for JSON parsing
+          command: sudo apt-get update && sudo apt-get install -y jq
+
+      - run:
           name: Create GitHub Release
           command: |
-            # Create release using the GitHub API directly with the token
-            curl -sL \
-              -X POST \
+            # Set repository information
+            REPO_OWNER="halimjr11"  # Replace with your GitHub username
+            REPO_NAME="Cameo"       # Replace with your repository name
+            
+            # Create the release
+            RELEASE_JSON=$(cat << 'EOF'
+            {
+              "tag_name": "${CIRCLE_TAG}",
+              "name": "Release ${CIRCLE_TAG}",
+              "body": "Automated release created by CircleCI\n\nChanges in this release:\n- Built from branch: ${CIRCLE_BRANCH}\n- Build number: ${CIRCLE_BUILD_NUM}\n- Commit: ${CIRCLE_SHA1}",
+              "draft": false,
+              "prerelease": false
+            }
+            EOF
+            )
+            
+            echo "Creating release..."
+            RESPONSE=$(curl -s -X POST \
               -H "Authorization: token ${GH_TOKEN}" \
               -H "Accept: application/vnd.github.v3+json" \
-              "https://api.github.com/repos/${CIRCLE_PROJECT_USERNAME}/${CIRCLE_PROJECT_REPONAME}/releases" \
-              -d '{"tag_name":"'"<< parameters.tag_name >>"'","name":"Release '"<< parameters.tag_name >>"'","body":"'"<< parameters.release_notes >>"'"}'
+              -d "$RELEASE_JSON" \
+              "https://api.github.com/repos/$REPO_OWNER/$REPO_NAME/releases")
+              
+            echo "API Response: $RESPONSE"
             
-            # Upload the APK to the release
-            RELEASE_ID=$(curl -sL \
-              -H "Authorization: token ${GH_TOKEN}" \
-              -H "Accept: application/vnd.github.v3+json" \
-              "https://api.github.com/repos/${CIRCLE_PROJECT_USERNAME}/${CIRCLE_PROJECT_REPONAME}/releases/tags/<< parameters.tag_name >>" | jq -r '.id')
+            # Extract the release ID
+            RELEASE_ID=$(echo "$RESPONSE" | jq -r '.id')
             
+            if [ "$RELEASE_ID" == "null" ]; then
+              echo "Failed to create release. Response:"
+              echo "$RESPONSE"
+              exit 1
+            fi
+            
+            echo "Created release with ID: $RELEASE_ID"
+            
+            # Upload APK files
             for apk in app/build/outputs/apk/release/*.apk; do
-              curl -sL \
-                -X POST \
-                -H "Authorization: token ${GH_TOKEN}" \
-                -H "Content-Type: $(file -b --mime-type $apk)" \
-                -H "Accept: application/vnd.github.v3+json" \
-                --data-binary @"$apk" \
-                "https://uploads.github.com/repos/${CIRCLE_PROJECT_USERNAME}/${CIRCLE_PROJECT_REPONAME}/releases/${RELEASE_ID}/assets?name=$(basename $apk)"
+              if [ -f "$apk" ]; then
+                echo "Uploading $apk..."
+                FILENAME=$(basename "$apk")
+                UPLOAD_URL="https://uploads.github.com/repos/$REPO_OWNER/$REPO_NAME/releases/$RELEASE_ID/assets?name=$FILENAME"
+                
+                curl -s -X POST \
+                  -H "Authorization: token ${GH_TOKEN}" \
+                  -H "Content-Type: $(file -b --mime-type "$apk")" \
+                  -H "Accept: application/vnd.github.v3+json" \
+                  --data-binary @"$apk" \
+                  "$UPLOAD_URL"
+                
+                echo "Uploaded $FILENAME"
+              fi
             done
 
 # Define the workflow tying jobs together and setting the run order

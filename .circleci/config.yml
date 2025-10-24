@@ -73,80 +73,102 @@ jobs: # List of jobs runnable in workflows
     executor: android_executor
     steps:
       - checkout
+      - create_github_release:
+          tag_name: "v1.0.0"
+          release_notes: |
+            Automated release created by CircleCI
+            
+            Changes in this release:
+            - Built from branch: ${CIRCLE_BRANCH}
+            - Build number: ${CIRCLE_BUILD_NUM}
+            - Commit: ${CIRCLE_SHA1}
+
+# Command to create a GitHub release
+commands:
+  create_github_release:
+    description: "Create a GitHub release with the built APK"
+    parameters:
+      tag_name:
+        type: string
+        default: "v1.0.0"
+      release_notes:
+        type: string
+        default: "Automated release by CircleCI"
+    steps:
       - run:
-          name: Install dependencies
+          name: Install GitHub CLI
           command: |
-            sudo apt-get update
-            sudo apt-get install -y jq curl
+            type -p curl >/dev/null || (sudo apt update && sudo apt install curl -y)
+            curl -fsSL https://cli.github.com/packages/githubcli-archive-keyring.gpg | sudo dd of=/usr/share/keyrings/githubcli-archive-keyring.gpg \
+            && sudo chmod go+r /usr/share/keyrings/githubcli-archive-keyring.gpg \
+            && echo "deb [arch=$(dpkg --print-architecture) signed-by=/usr/share/keyrings/githubcli-archive-keyring.gpg] https://cli.github.com/packages stable main" | sudo tee /etc/apt/sources.list.d/github-cli.list > /dev/null \
+            && sudo apt update \
+            && sudo apt install gh -y
 
       - run:
-          name: Verify APK exists
+          name: Configure Git
           command: |
-            if [ ! -d "app/build/outputs/apk/release" ]; then
-              echo "❌ Error: Release APK directory not found"
-              echo "Make sure the build job runs successfully first"
-              exit 1
-            fi
+            git config --global user.email "circleci@example.com"
+            git config --global user.name "CircleCI"
 
-            APK_COUNT=$(ls -1 app/build/outputs/apk/release/*.apk 2>/dev/null | wc -l)
-            if [ "$APK_COUNT" -eq 0 ]; then
-              echo "❌ Error: No APK files found in app/build/outputs/apk/release/"
-              echo "Files in directory:"
-              ls -la app/build/outputs/apk/release/ || true
-              exit 1
-            fi
+      - run:
+          name: Install jq for JSON parsing
+          command: sudo apt-get update && sudo apt-get install -y jq
 
       - run:
           name: Create GitHub Release
           command: |
             # Set repository information
-            REPO_OWNER="halimjr11"  # Ganti dengan username GitHub Anda
-            REPO_NAME="Cameo"       # Ganti dengan nama repository Anda
+            REPO_OWNER="halimjr11"  # Replace with your GitHub username
+            REPO_NAME="Cameo"       # Replace with your repository name
             
-            # Prepare release data
-            RELEASE_TAG="v1.0.0"
-            RELEASE_BODY="Automated release created by CircleCI\n\nChanges in this release:\n- Built from branch: ${CIRCLE_BRANCH}\n- Build number: ${CIRCLE_BUILD_NUM}\n- Commit: ${CIRCLE_SHA1}"
+            # Create the release
+            RELEASE_JSON=$(cat << 'EOF'
+            {
+              "tag_name": "${CIRCLE_TAG}",
+              "name": "Release ${CIRCLE_TAG}",
+              "body": "Automated release created by CircleCI\n\nChanges in this release:\n- Built from branch: ${CIRCLE_BRANCH}\n- Build number: ${CIRCLE_BUILD_NUM}\n- Commit: ${CIRCLE_SHA1}",
+              "draft": false,
+              "prerelease": false
+            }
+            EOF
+            )
             
-            # Create release
-            echo "Creating release $RELEASE_TAG..."
+            echo "Creating release..."
             RESPONSE=$(curl -s -X POST \
               -H "Authorization: token ${GH_TOKEN}" \
               -H "Accept: application/vnd.github.v3+json" \
-              -d "{\"tag_name\":\"$RELEASE_TAG\",\"name\":\"Release $RELEASE_TAG\",\"body\":\"$RELEASE_BODY\",\"draft\":false,\"prerelease\":false}" \
+              -d "$RELEASE_JSON" \
               "https://api.github.com/repos/$REPO_OWNER/$REPO_NAME/releases")
-            
+              
             echo "API Response: $RESPONSE"
             
-            # Extract release ID
+            # Extract the release ID
             RELEASE_ID=$(echo "$RESPONSE" | jq -r '.id')
             
             if [ "$RELEASE_ID" == "null" ]; then
-              echo "❌ Failed to create release"
-              echo "Response: $RESPONSE"
+              echo "Failed to create release. Response:"
+              echo "$RESPONSE"
               exit 1
             fi
             
-            echo "✅ Created release ID: $RELEASE_ID"
+            echo "Created release with ID: $RELEASE_ID"
             
             # Upload APK files
             for apk in app/build/outputs/apk/release/*.apk; do
               if [ -f "$apk" ]; then
-                echo "📤 Uploading $(basename "$apk")..."
-                UPLOAD_URL="https://uploads.github.com/repos/$REPO_OWNER/$REPO_NAME/releases/$RELEASE_ID/assets?name=$(basename "$apk")"
+                echo "Uploading $apk..."
+                FILENAME=$(basename "$apk")
+                UPLOAD_URL="https://uploads.github.com/repos/$REPO_OWNER/$REPO_NAME/releases/$RELEASE_ID/assets?name=$FILENAME"
                 
-                UPLOAD_RESPONSE=$(curl -s -X POST \
+                curl -s -X POST \
                   -H "Authorization: token ${GH_TOKEN}" \
                   -H "Content-Type: $(file -b --mime-type "$apk")" \
                   -H "Accept: application/vnd.github.v3+json" \
                   --data-binary @"$apk" \
-                  "$UPLOAD_URL")
+                  "$UPLOAD_URL"
                 
-                if echo "$UPLOAD_RESPONSE" | jq -e '.errors' > /dev/null; then
-                  echo "❌ Failed to upload $(basename "$apk")"
-                  echo "Response: $UPLOAD_RESPONSE"
-                else
-                  echo "✅ Uploaded $(basename "$apk")"
-                fi
+                echo "Uploaded $FILENAME"
               fi
             done
 

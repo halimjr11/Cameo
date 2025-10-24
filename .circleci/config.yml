@@ -114,29 +114,14 @@ commands:
       - run:
           name: Create GitHub Release
           command: |
-            # Create release using the GitHub API directly with the token
-            curl -sL \
-              -X POST \
-              -H "Authorization: token ${GH_TOKEN}" \
-              -H "Accept: application/vnd.github.v3+json" \
-              "https://api.github.com/repos/${CIRCLE_PROJECT_USERNAME}/${CIRCLE_PROJECT_REPONAME}/releases" \
-              -d '{"tag_name":"'"<< parameters.tag_name >>"'","name":"Release '"<< parameters.tag_name >>"'","body":"'"<< parameters.release_notes >>"'"}'
+            # Authenticate with GitHub using the GH_TOKEN environment variable
+            echo "${GH_TOKEN}" | gh auth login --with-token
             
-            # Upload the APK to the release
-            RELEASE_ID=$(curl -sL \
-              -H "Authorization: token ${GH_TOKEN}" \
-              -H "Accept: application/vnd.github.v3+json" \
-              "https://api.github.com/repos/${CIRCLE_PROJECT_USERNAME}/${CIRCLE_PROJECT_REPONAME}/releases/tags/<< parameters.tag_name >>" | jq -r '.id')
-            
-            for apk in app/build/outputs/apk/release/*.apk; do
-              curl -sL \
-                -X POST \
-                -H "Authorization: token ${GH_TOKEN}" \
-                -H "Content-Type: $(file -b --mime-type $apk)" \
-                -H "Accept: application/vnd.github.v3+json" \
-                --data-binary @"$apk" \
-                "https://uploads.github.com/repos/${CIRCLE_PROJECT_USERNAME}/${CIRCLE_PROJECT_REPONAME}/releases/${RELEASE_ID}/assets?name=$(basename $apk)"
-            done
+            # Create the release
+            gh release create << parameters.tag_name >> \
+              --title "Release << parameters.tag_name >>" \
+              --notes "<< parameters.release_notes >>" \
+              app/build/outputs/apk/release/*.apk
 
 # Define the workflow tying jobs together and setting the run order
 workflows:

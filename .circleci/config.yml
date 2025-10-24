@@ -68,14 +68,6 @@ jobs: # List of jobs runnable in workflows
 
       - store_artifacts: # Upload ProGuard/R8 mapping files if present for release builds
           path: app/build/outputs/mapping/release  # Directory containing mapping files
-          destination: mapping/release
-          
-      # Persist the APK files to be used in the next job
-      - persist_to_workspace:
-          root: .
-          paths:
-            - app/build/outputs/apk/release/*.apk
-            - app/build/outputs/mapping/release/*
 
   create_release:
     executor: android_executor
@@ -86,31 +78,23 @@ jobs: # List of jobs runnable in workflows
           command: |
             sudo apt-get update
             sudo apt-get install -y jq curl
-            
-      # Restore the workspace from the build job
-      - attach_workspace:
-          at: .
-          
+
       - run:
           name: Verify APK exists
           command: |
-            # Create the directory if it doesn't exist
-            mkdir -p app/build/outputs/apk/release
-            
-            # Check if we have any APK files
-            APK_COUNT=$(find app/build/outputs/apk/release -name "*.apk" | wc -l)
-            
-            if [ "$APK_COUNT" -eq 0 ]; then
-              echo "❌ Error: No APK files found in app/build/outputs/apk/release/"
-              echo "Current directory: $(pwd)"
-              echo "Directory contents:"
-              ls -la app/build/outputs/apk/release/ 2>/dev/null || echo "APK directory not found"
-              echo "Workspace contents:"
-              find . -name "*.apk" || echo "No APK files found in workspace"
+            if [ ! -d "app/build/outputs/apk/release" ]; then
+              echo "❌ Error: Release APK directory not found"
+              echo "Make sure the build job runs successfully first"
               exit 1
             fi
-            
-            echo "✅ Found $APK_COUNT APK file(s) for release"
+
+            APK_COUNT=$(ls -1 app/build/outputs/apk/release/*.apk 2>/dev/null | wc -l)
+            if [ "$APK_COUNT" -eq 0 ]; then
+              echo "❌ Error: No APK files found in app/build/outputs/apk/release/"
+              echo "Files in directory:"
+              ls -la app/build/outputs/apk/release/ || true
+              exit 1
+            fi
 
       - run:
           name: Create GitHub Release

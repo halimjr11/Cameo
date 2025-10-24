@@ -114,10 +114,6 @@ commands:
       - run:
           name: Create GitHub Release
           command: |
-            # Authenticate with GitHub using the GH_TOKEN environment variable
-            echo "${GH_TOKEN}" | gh auth login --with-token
-            
-            # Create the release
             gh release create << parameters.tag_name >> \
               --title "Release << parameters.tag_name >>" \
               --notes "<< parameters.release_notes >>" \

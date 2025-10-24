@@ -2,132 +2,76 @@
 version: 2.1  # Config schema version used by CircleCI
 
 # Define reusable executors, commands, and jobs in a single file for clarity
-executors: # A map of named execution environments
-  android_executor: # Custom executor for Android builds
-    docker: # Use a Docker image to run jobs
+executors:  # A map of named execution environments
+  android_executor:  # Custom executor for Android builds
+    docker:  # Use a Docker image to run jobs
       - image: cimg/android:2024.04  # Official CircleCI Android image; using a stable, existing tag to avoid manifest errors
     resource_class: large  # Allocate more CPU/RAM for Gradle builds
-    environment: # Global environment variables for this executor
+    environment:  # Global environment variables for this executor
       JVM_OPTS: -Xmx2048m  # Increase JVM heap to reduce OOM risk
       GRADLE_OPTS: -Dorg.gradle.daemon=false -Dorg.gradle.parallel=true -Dorg.gradle.configureondemand=true -Dkotlin.compiler.execution.strategy=in-process  # Gradle tuning flags
 
 # Define the actual job that will run our build, tests, and packaging
-jobs: # List of jobs runnable in workflows
-  build_test_and_package: # Single job to checkout, cache, test, lint, and build APKs
+jobs:  # List of jobs runnable in workflows
+  build_test_and_package:  # Single job to checkout, cache, test, lint, and build APKs
     executor: android_executor  # Use the custom Android executor defined above
-    steps: # Ordered steps the job will execute
+    steps:  # Ordered steps the job will execute
       - checkout  # Fetch the repository source code into the job workspace
 
-      - run: # Ensure Gradle wrapper is executable (needed on fresh checkouts)
+      - run:  # Ensure Gradle wrapper is executable (needed on fresh checkouts)
           name: Make Gradle wrapper executable  # Human-friendly step name
           command: chmod +x ./gradlew  # Grant execute permission to gradlew
 
-      - restore_cache: # Speed up builds by restoring Gradle caches from previous runs
+      - restore_cache:  # Speed up builds by restoring Gradle caches from previous runs
           name: Restore Gradle cache  # Human-friendly step name
-          keys: # A list of cache keys to attempt to restore
+          keys:  # A list of cache keys to attempt to restore
             - v1-gradle-{{ checksum "gradle/wrapper/gradle-wrapper.properties" }}-{{ checksum "settings.gradle.kts" }}-{{ checksum "build.gradle.kts" }}-{{ checksum "gradle/libs.versions.toml" }}  # Primary cache key including significant Gradle files
             - v1-gradle-  # Fallback to any cache with this prefix
 
-      - run: # Pre-download dependencies to warm cache and fail fast on dependency issues
+      - run:  # Pre-download dependencies to warm cache and fail fast on dependency issues
           name: Gradle dependency resolution  # Human-friendly step name
           command: ./gradlew --no-daemon dependencies || true  # Resolve dependencies for all modules; ignore non-zero to avoid failing due to configuration-only tasks
 
-      - save_cache: # Save Gradle caches after dependency resolution
+      - save_cache:  # Save Gradle caches after dependency resolution
           name: Save Gradle cache  # Human-friendly step name
           key: v1-gradle-{{ checksum "gradle/wrapper/gradle-wrapper.properties" }}-{{ checksum "settings.gradle.kts" }}-{{ checksum "build.gradle.kts" }}-{{ checksum "gradle/libs.versions.toml" }}  # Cache key matching restore step
-          paths: # Directories to cache
+          paths:  # Directories to cache
             - ~/.gradle/caches  # Gradle caches (dependencies, build caches)
             - ~/.gradle/wrapper  # Gradle wrapper distributions
 
-      - run: # Clean previous builds to ensure a reproducible environment
+      - run:  # Clean previous builds to ensure a reproducible environment
           name: Clean project  # Human-friendly step name
           command: ./gradlew --no-daemon clean  # Remove build outputs
 
-      - run: # Run static analysis and unit tests
+      - run:  # Run static analysis and unit tests
           name: Lint and unit tests  # Human-friendly step name
           command: ./gradlew --no-daemon lint testDebugUnitTest  # Execute Android Lint and unit tests for debug variant
 
-      - store_test_results: # Upload JUnit XML test results so CircleCI can display them
+      - store_test_results:  # Upload JUnit XML test results so CircleCI can display them
           path: app/build/test-results  # Path where Gradle writes unit test results
 
-      - store_artifacts: # Persist lint reports for inspection in the CircleCI UI
+      - store_artifacts:  # Persist lint reports for inspection in the CircleCI UI
           path: app/build/reports  # Directory containing lint and other reports
           destination: reports  # Name to show in artifacts browser
 
-      - run: # Assemble APKs for distribution/testing
+      - run:  # Assemble APKs for distribution/testing
           name: Assemble debug and release APKs  # Human-friendly step name
           command: ./gradlew --no-daemon assembleDebug assembleRelease  # Build debug and release APKs
 
-      - store_artifacts: # Upload built debug APK(s) as artifacts for download
+      - store_artifacts:  # Upload built debug APK(s) as artifacts for download
           path: app/build/outputs/apk/debug  # Directory containing debug APK outputs
           destination: apk/debug  # Artifact destination folder name
 
-      - store_artifacts: # Upload built release APK(s) as artifacts for download
+      - store_artifacts:  # Upload built release APK(s) as artifacts for download
           path: app/build/outputs/apk/release  # Directory containing release APK outputs
           destination: apk/release  # Artifact destination folder name
 
-      - store_artifacts: # Upload ProGuard/R8 mapping files if present for release builds
+      - store_artifacts:  # Upload ProGuard/R8 mapping files if present for release builds
           path: app/build/outputs/mapping/release  # Directory containing mapping files
-
-  create_release:
-    executor: android_executor
-    steps:
-      - checkout
-      - create_github_release:
-          tag_name: "v1.0.0"
-          release_notes: |
-            Automated release created by CircleCI
-            
-            Changes in this release:
-            - Built from branch: ${CIRCLE_BRANCH}
-            - Build number: ${CIRCLE_BUILD_NUM}
-            - Commit: ${CIRCLE_SHA1}
-
-# Command to create a GitHub release
-commands:
-  create_github_release:
-    description: "Create a GitHub release with the built APK"
-    parameters:
-      tag_name:
-        type: string
-        default: "v1.0.0"
-      release_notes:
-        type: string
-        default: "Automated release by CircleCI"
-    steps:
-      - run:
-          name: Install GitHub CLI
-          command: |
-            type -p curl >/dev/null || (sudo apt update && sudo apt install curl -y)
-            curl -fsSL https://cli.github.com/packages/githubcli-archive-keyring.gpg | sudo dd of=/usr/share/keyrings/githubcli-archive-keyring.gpg \
-            && sudo chmod go+r /usr/share/keyrings/githubcli-archive-keyring.gpg \
-            && echo "deb [arch=$(dpkg --print-architecture) signed-by=/usr/share/keyrings/githubcli-archive-keyring.gpg] https://cli.github.com/packages stable main" | sudo tee /etc/apt/sources.list.d/github-cli.list > /dev/null \
-            && sudo apt update \
-            && sudo apt install gh -y
-
-      - run:
-          name: Configure Git
-          command: |
-            git config --global user.email "circleci@example.com"
-            git config --global user.name "CircleCI"
-
-      - run:
-          name: Create GitHub Release
-          command: |
-            gh release create << parameters.tag_name >> \
-              --title "Release << parameters.tag_name >>" \
-              --notes "<< parameters.release_notes >>" \
-              app/build/outputs/apk/release/*.apk
+          destination: mapping/release  # Artifact destination folder name
 
 # Define the workflow tying jobs together and setting the run order
-workflows:
-  ci:
-    jobs:
-      - build_test_and_package
-      - create_release:
-          requires:
-            - build_test_and_package
-          filters:
-            branches:
-              only: MADE/submission-2
-          context: github-release
+workflows:  # Workflows orchestrate jobs
+  ci:  # Name of the workflow
+    jobs:  # Jobs included in this workflow
+      - build_test_and_package  # Run the single job defined above

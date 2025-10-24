@@ -82,7 +82,7 @@ jobs: # List of jobs runnable in workflows
     steps:
       - checkout
       - run:
-          name: Insetall dependencies
+          name: Install dependencies
           command: |
             sudo apt-get update
             sudo apt-get install -y jq curl
@@ -168,25 +168,13 @@ jobs: # List of jobs runnable in workflows
 
 # Define the workflow tying jobs together and setting the run order
 workflows:
-  version: 2.1
-  build_and_test:
+  ci:
     jobs:
-      - build_test_and_package:
-          filters:
-            branches:
-              ignore: /.*\/.*/  # Ignore all branches with slashes by default
-  
-  release:
-    when:
-      and:
-        - equal: [ true, << pipeline.parameters.run_release >> ]
-    jobs:
+      - build_test_and_package
       - create_release:
-          context: github-release
+          requires:
+            - build_test_and_package
           filters:
             branches:
-              only:
-                - main
-                - master
-                - release/*
-                - MADE/submission-2
+              only: MADE/submission-2
+          context: github-release

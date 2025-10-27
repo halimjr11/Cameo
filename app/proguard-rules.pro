@@ -20,45 +20,46 @@
 # hide the original source file name.
 #-renamesourcefileattribute SourceFile
 
-# Keep Koin core classes
--keep class org.koin.** { *; }
+-ignorewarnings
+-dontoptimize
+-dontshrink
+-allowaccessmodification
+-overloadaggressively
+-keepattributes *Annotation*, Signature, InnerClasses, EnclosingMethod, RuntimeVisibleAnnotations, RuntimeVisibleParameterAnnotations, AnnotationDefault
+
+-keep class * extends android.app.Application {
+    void attachBaseContext(android.content.Context);
+    void onCreate();
+}
+-keep class * extends android.app.Activity
+-keep class * extends androidx.fragment.app.Fragment {
+    public <init>();
+}
+-keep class * extends android.app.Service
+-keep class * extends android.content.BroadcastReceiver
+-keep class * extends android.content.ContentProvider
+
+# Core Koin components
+-keep class org.koin.core.component.KoinComponent
+-keep class org.koin.core.annotation.** { *; }
+-keep class org.koin.core.component.** { *; }
 -dontwarn org.koin.**
 
-# Keep your modules (Koin uses reflection to load them)
--keep class com.halimjr11.cameo.di.** { *; }
+-keep class com.halimjr11.cameo.view.feature.*.viewmodel.*ViewModel
+-keep class com.halimjr11.cameo.di.*Module { *; }
 
-# Keep ViewModel and its constructors for Koin
--keepclassmembers class * extends androidx.lifecycle.ViewModel {
-    public <init>(...);
-}
--keep class com.halimjr11.cameo.view.feature.**.viewmodel.** { *; }
-
-# Optional: keep singleton/inject classes
--keep class com.halimjr11.cameo.view.feature.**.di.** { *; }
--keepnames class com.halimjr11.cameo.core.**.di.** { *; }
-
-# Keep ACTIVITY & FRAGMENT
--keep class com.halimjr11.cameo.view.** { *; }
--keepclassmembers class * extends androidx.fragment.app.Fragment {
-    public <init>();
-}
--keepclassmembers class * extends android.app.Activity {
-    public <init>();
-}
-
-# Keep all generated ViewBinding classes
 -keep class **Binding { *; }
-
-# Keep all generated DataBinding classes
 -keep class **BindingImpl { *; }
 
-# Keep ANDROID / KOTLIN ANNOTATIONS
 -dontwarn org.jetbrains.annotations.**
 -dontwarn javax.inject.**
 -dontwarn kotlin.Unit
 -dontwarn kotlin.Metadata
-
-# Keep all GENERAL RULES FOR APP
--keepattributes Signature, InnerClasses, EnclosingMethod, RuntimeVisibleAnnotations, RuntimeVisibleParameterAnnotations
+-dontwarn androidx.lifecycle.viewmodel.CreationExtras
+-dontwarn androidx.lifecycle.viewmodel.CreationExtras$Key
 -dontwarn com.google.errorprone.annotations.**
--dontwarn androidx.lifecycle.**
+
+-keep class * implements android.os.Parcelable {
+    public static final android.os.Parcelable$Creator *;
+}
+

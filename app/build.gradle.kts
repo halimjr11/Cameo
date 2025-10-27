@@ -21,12 +21,26 @@ android {
     }
 
     buildTypes {
-        release {
+        debug {
             isMinifyEnabled = false
+            isShrinkResources = false
+        }
+        release {
+            isMinifyEnabled = true
+            isShrinkResources = true
             proguardFiles(
                 getDefaultProguardFile("proguard-android-optimize.txt"),
                 "proguard-rules.pro"
             )
+        }
+    }
+
+    packaging {
+        resources {
+            excludes += "/META-INF/{AL2.0,LGPL2.1}"
+            excludes += "META-INF/*.version"
+            excludes += "META-INF/versions/9/previous-compilation-data.bin"
+            pickFirsts += "**/*.so"
         }
     }
     compileOptions {
@@ -41,6 +55,16 @@ android {
     buildFeatures {
         buildConfig = true
         viewBinding = true
+    }
+    packaging {
+        resources {
+            excludes += "META-INF/AL2.0"
+            excludes += "META-INF/LGPL2.1"
+
+            jniLibs {
+                useLegacyPackaging = true
+            }
+        }
     }
     dynamicFeatures += setOf(":favorite")
 }

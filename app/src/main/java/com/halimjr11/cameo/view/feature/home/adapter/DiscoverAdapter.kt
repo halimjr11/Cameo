@@ -8,8 +8,8 @@ import com.halimjr11.cameo.domain.model.MovieDomain
 import com.halimjr11.cameo.view.feature.home.DiscoverMovieFragment
 
 class DiscoverAdapter(
-    private val fragmentManager: FragmentManager,
-    private val lifecycle: Lifecycle,
+    fragmentManager: FragmentManager,
+    lifecycle: Lifecycle,
     private val movies: List<MovieDomain>
 ) : FragmentStateAdapter(fragmentManager, lifecycle) {
     override fun createFragment(position: Int): Fragment {

@@ -2,7 +2,6 @@ package com.halimjr11.cameo.view.feature.settings.viewmodel
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.halimjr11.cameo.common.coroutines.CoroutineDispatcherProvider
 import com.halimjr11.cameo.common.helper.LanguageManager
 import com.halimjr11.cameo.common.helper.ThemeManager
 import kotlinx.coroutines.flow.MutableStateFlow
@@ -11,8 +10,7 @@ import kotlinx.coroutines.launch
 
 class SettingsViewModel(
     private val themeManager: ThemeManager,
-    private val languageManager: LanguageManager,
-    private val dispatcher: CoroutineDispatcherProvider
+    private val languageManager: LanguageManager
 ) : ViewModel() {
     private val _isDarkModeEnabled = MutableStateFlow(themeManager.isSystemDarkMode())
     val isDarkModeEnabled: StateFlow<Boolean> = _isDarkModeEnabled

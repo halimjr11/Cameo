@@ -7,7 +7,7 @@ import org.koin.dsl.module
 
 fun loadSettingModule() {
     val viewModel = module {
-        scope<SettingsFragment> { scoped { SettingsViewModel(get(), get(), get()) } }
+        scope<SettingsFragment> { scoped { SettingsViewModel(get(), get()) } }
     }
     loadKoinModules(viewModel)
 }

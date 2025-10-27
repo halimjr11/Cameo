@@ -3,8 +3,9 @@
 [![CircleCI](https://dl.circleci.com/status-badge/img/gh/halimjr11/Cameo/tree/MADE%2Fsubmission-2.svg?style=svg)](https://dl.circleci.com/status-badge/redirect/gh/halimjr11/Cameo/tree/MADE%2Fsubmission-2)
 
 ## 📱 Screenshots
-<div align="center">
-  <img src="screenshots/cameo_banner.png" alt="Luma Banner" style="width: 100%;"/>
+
+<div style="text-align: center;">
+  <img src="screenshots/cameo_banner.png" alt="Cameo Banner" style="width: 100%; max-width: 800px; display: block; margin: 0 auto;"/>
 </div>
 
 ## 📝 Description

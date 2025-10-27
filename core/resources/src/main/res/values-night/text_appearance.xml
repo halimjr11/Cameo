@@ -1,12 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <!-- 🎬 Display / App Title -->
-    <style name="TextAppearance.Cameo.Display">
-        <item name="android:fontFamily">@font/montserrat_bold</item>
-        <item name="android:textSize">32sp</item>
-        <item name="android:textStyle">bold</item>
-        <item name="android:letterSpacing">-0.05</item>
-    </style>
 
     <!-- 🎞️ Headline / Movie Title -->
     <style name="TextAppearance.Cameo.Headline">
@@ -42,12 +36,4 @@
     </style>
 
     <!-- 🔘 Button Text -->
-    <style name="TextAppearance.Cameo.Button">
-        <item name="android:fontFamily">@font/poppins_bold</item>
-        <item name="android:textSize">14sp</item>
-        <item name="android:textStyle">normal</item>
-        <item name="android:letterSpacing">0.01</item>
-        <item name="android:textAllCaps">true</item>
-        <item name="android:textColor">@color/colorAccent</item>
-    </style>
 </resources>

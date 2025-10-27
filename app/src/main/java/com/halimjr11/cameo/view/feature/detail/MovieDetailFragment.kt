@@ -2,7 +2,6 @@ package com.halimjr11.cameo.view.feature.detail
 
 import android.graphics.PorterDuff
 import androidx.activity.addCallback
-import androidx.core.view.isVisible
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -12,6 +11,7 @@ import com.halimjr11.cameo.common.Constants.IMAGE_URL
 import com.halimjr11.cameo.common.UiState
 import com.halimjr11.cameo.common.extension.launchAndCollect
 import com.halimjr11.cameo.components.BaseFragment
+import com.halimjr11.cameo.components.visibleIf
 import com.halimjr11.cameo.databinding.FragmentMovieDetailBinding
 import com.halimjr11.cameo.domain.model.MovieDetailDomain
 import com.halimjr11.cameo.resources.R
@@ -62,9 +62,9 @@ class MovieDetailFragment : BaseFragment<FragmentMovieDetailBinding, DetailViewM
         getDetailMovie(args.idMovie)
         launchAndCollect(detailMovie) { state ->
             binding.run {
-                nestedContent.isVisible = state is UiState.Success
-                progressLoading.isVisible = state is UiState.Loading
-                viewError.isVisible = state is UiState.Error
+                nestedContent.visibleIf(state is UiState.Success)
+                progressLoading.visibleIf(state is UiState.Loading)
+                viewError.visibleIf(state is UiState.Error)
                 when (state) {
                     is UiState.Success -> {
                         setupDetail(state.data)

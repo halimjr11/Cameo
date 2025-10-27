@@ -5,12 +5,12 @@ import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
-import androidx.core.view.isVisible
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.halimjr11.cameo.common.UiState
 import com.halimjr11.cameo.common.extension.launchAndCollect
 import com.halimjr11.cameo.components.SpacingItemDecoration
+import com.halimjr11.cameo.components.visibleIf
 import com.halimjr11.cameo.favorite.adapter.FavoriteAdapter
 import com.halimjr11.cameo.favorite.databinding.ActivityFavoriteBinding
 import com.halimjr11.cameo.favorite.di.loadFavoriteModule
@@ -77,9 +77,9 @@ class FavoriteActivity : AppCompatActivity(), AndroidScopeComponent {
     private fun observeData() = with(viewModel) {
         launchAndCollect(favoriteMovie) { state ->
             binding?.run {
-                nestedScroll.isVisible = state is UiState.Success
-                progressFavoriteLoading.isVisible = state is UiState.Loading
-                errorFavoriteView.isVisible = state is UiState.Error
+                nestedScroll.visibleIf(state is UiState.Success)
+                progressFavoriteLoading.visibleIf(state is UiState.Loading)
+                errorFavoriteView.visibleIf(state is UiState.Error)
             }
             when (state) {
                 is UiState.Success -> {

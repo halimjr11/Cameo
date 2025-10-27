@@ -26,7 +26,7 @@ class DetailViewModel(
     private val _isFavorite: MutableStateFlow<Boolean> = MutableStateFlow(false)
     val isFavorite: StateFlow<Boolean> = _isFavorite
 
-    fun checkFavorite(id: Int) = viewModelScope.launch(dispatchers.io) {
+    private fun checkFavorite(id: Int) = viewModelScope.launch(dispatchers.io) {
         val result = getCheckFavUseCase(id)
         _isFavorite.value = result
     }

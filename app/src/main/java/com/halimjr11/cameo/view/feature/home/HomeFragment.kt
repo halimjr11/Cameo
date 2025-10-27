@@ -3,7 +3,6 @@ package com.halimjr11.cameo.view.feature.home
 import android.content.Intent
 import android.view.View
 import androidx.core.net.toUri
-import androidx.core.view.isVisible
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -16,6 +15,7 @@ import com.halimjr11.cameo.common.UiState
 import com.halimjr11.cameo.common.extension.launchAndCollect
 import com.halimjr11.cameo.components.BaseFragment
 import com.halimjr11.cameo.components.SpacingItemDecoration
+import com.halimjr11.cameo.components.visibleIf
 import com.halimjr11.cameo.databinding.FragmentHomeBinding
 import com.halimjr11.cameo.domain.model.MovieDomain
 import com.halimjr11.cameo.resources.R
@@ -97,9 +97,6 @@ class HomeFragment :
     override fun observeData() = with(viewModel) {
         launchAndCollect(homeMovie) { state ->
             binding.run {
-                nestedScroll.isVisible = state is UiState.Success
-                errorHomeView.isVisible = state is UiState.Error
-                progressHomeLoading.isVisible = state is UiState.Loading
                 when (state) {
                     is UiState.Success -> {
                         val (discover, recommended) = state.data
@@ -115,6 +112,9 @@ class HomeFragment :
 
                     else -> Unit
                 }
+                nestedScroll.visibleIf(state is UiState.Success)
+                errorHomeView.visibleIf(state is UiState.Error)
+                progressHomeLoading.visibleIf(state is UiState.Loading)
             }
 
         }
